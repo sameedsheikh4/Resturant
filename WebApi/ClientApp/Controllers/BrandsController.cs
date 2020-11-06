@@ -19,10 +19,6 @@ namespace ClientApp.Controllers
             _clientFactory = clientFactory;
             _client = client;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
         public async Task<IActionResult> Index()
         {
             try
