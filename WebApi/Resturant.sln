@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "Resturant\WebAPI.csproj", "{21543B08-B824-4419-B7DD-7F728B99FFFA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{75AAC042-1869-49F2-AB8E-AE7C9FFDBCFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientApp", "ClientApp\ClientApp.csproj", "{7339129B-80B5-40C6-92C7-2D2B79FB0C30}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21543B08-B824-4419-B7DD-7F728B99FFFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21543B08-B824-4419-B7DD-7F728B99FFFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21543B08-B824-4419-B7DD-7F728B99FFFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21543B08-B824-4419-B7DD-7F728B99FFFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75AAC042-1869-49F2-AB8E-AE7C9FFDBCFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75AAC042-1869-49F2-AB8E-AE7C9FFDBCFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75AAC042-1869-49F2-AB8E-AE7C9FFDBCFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75AAC042-1869-49F2-AB8E-AE7C9FFDBCFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7339129B-80B5-40C6-92C7-2D2B79FB0C30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7339129B-80B5-40C6-92C7-2D2B79FB0C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7339129B-80B5-40C6-92C7-2D2B79FB0C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7339129B-80B5-40C6-92C7-2D2B79FB0C30}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9FC0F3DA-3D78-4692-88CF-F78B41BE741E}
+	EndGlobalSection
+EndGlobal
