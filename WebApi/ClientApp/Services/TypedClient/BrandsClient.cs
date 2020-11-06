@@ -1,5 +1,6 @@
 ﻿using ClientApp.Models;
 using Newtonsoft.Json;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,13 @@ namespace ClientApp.TypedClient
     public class BrandsClient
     {
         public HttpClient Client { get; }
+        public HttpClientHelper Helper { get; }
+
         public BrandModel Model;
-        public BrandsClient(HttpClient Client)
+        public BrandsClient(HttpClient Client, HttpClientHelper helper)
         {
             this.Client = Client;
+            Helper = helper;
         }
         public async Task<IEnumerable<BrandModel>> GetBrandsAsync()
         {
@@ -28,11 +32,9 @@ namespace ClientApp.TypedClient
             return JsonConvert.DeserializeObject<IEnumerable<BrandModel>>(ResponseStream);            
         }
         public async Task<BrandModel> CreateBrandsAsync(BrandModel BrandModel)
-        {
-            StringContent BrandModelJson = new StringContent(
-                System.Text.Json.JsonSerializer.Serialize(BrandModel),
-                Encoding.UTF8,
-                "application/json");
+        {            
+
+            HttpContent BrandModelJson = Helper.CreateHttpContent<BrandModel>(BrandModel);
 
             using var HttpResponse =
                 await Client.PostAsync("api/Brands", BrandModelJson);
@@ -49,10 +51,7 @@ namespace ClientApp.TypedClient
         }
         public async Task UpdateBrandAsync(BrandModel BrandModel)
         {
-            StringContent BrandModelJson = new StringContent(
-                System.Text.Json.JsonSerializer.Serialize(BrandModel),
-                Encoding.UTF8,
-                "application/json");
+            HttpContent BrandModelJson = Helper.CreateHttpContent<BrandModel>(BrandModel);
 
             using var HttpResponse =
                 await Client.PutAsync("Brands", BrandModelJson);
