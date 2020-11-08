@@ -2,8 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using WebAPI.Interfaces;
 
-namespace Common.logger
+namespace WebAPI.Services
 {
     public class LoggerManager : IloggerManager
     {

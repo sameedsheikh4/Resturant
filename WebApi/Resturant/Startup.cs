@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Common.logger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -18,9 +17,11 @@ using NLog;
 using WebAPI.Entities;
 using WebAPI.Interfaces;
 using WebAPI.Interfaces.Client;
+using WebAPI.Interfaces.Repo;
 using WebAPI.Interfaces.Services;
 using WebAPI.Repository;
 using WebAPI.Repository.Client;
+using WebAPI.Repository.Repo;
 using WebAPI.Services;
 
 
@@ -57,9 +58,15 @@ namespace Resturant
 
 
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-            services.AddTransient<IBrandsRepo, BrandsRepo>();
 
+            services.AddTransient<IBrandsRepo, BrandsRepo>();
             services.AddTransient<IBrandService, BrandsService>();
+
+            services.AddTransient<IItemsRepo, ItemsRepo>();
+            services.AddTransient<IItemService, ItemsService>();
+
+            services.AddTransient<IMenusRepo, MenusRepo>();
+            services.AddTransient<IMenusService, MenusService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -75,9 +82,7 @@ namespace Resturant
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
+            }            
             app.UseMvc();
         }
     }

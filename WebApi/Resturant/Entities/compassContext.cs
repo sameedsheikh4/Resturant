@@ -249,22 +249,37 @@ namespace WebAPI.Entities
                     .HasColumnName("Archived_By")
                     .HasMaxLength(767);
 
+                entity.Property(e => e.ArchivedDate)
+                .HasColumnName("Archived_Date");
+
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasColumnName("Created_By")
                     .HasMaxLength(767);
 
+                entity.Property(e => e.CreatedDate)
+                .HasColumnName("Created_Date");
+
                 entity.Property(e => e.Description)
                     .IsRequired()
                     .HasMaxLength(500);
 
-                entity.Property(e => e.IsActive).HasColumnName("Is_Active");
+                entity.Property(e => e.IsActive)
+                .HasColumnName("Is_Active")
+                .HasColumnType("tinyint(1)");
+                //.HasConversion(new BoolToZeroOneConverter<Int16>());
 
-                entity.Property(e => e.IsOutOfStock).HasColumnName("Is_Out_of_Stock");
+                entity.Property(e => e.IsOutOfStock)
+                .HasColumnName("Is_Out_of_Stock")
+                .HasColumnType("tinyint(1)");
+                //.HasConversion(new BoolToZeroOneConverter<Int16>());
 
                 entity.Property(e => e.ModifiedBy)
                     .HasColumnName("Modified_By")
                     .HasMaxLength(767);
+
+                entity.Property(e => e.ModifiedDate)
+                .HasColumnName("Modified_Date");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -315,24 +330,43 @@ namespace WebAPI.Entities
                 entity.HasIndex(e => e.StoreId)
                     .HasName("restuarant_menu_fk");
 
-                entity.Property(e => e.MenuId).HasColumnName("Menu_Id");
+                entity.Property(e => e.MenuId)
+                    .HasColumnName("Menu_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.ArchivedBy)
                     .HasColumnName("Archived_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ArchivedDate).HasColumnName("Archived_Date");
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasColumnName("Created_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.IsActive).HasColumnName("Is_Active");
+                entity.Property(e => e.CreatedDate).HasColumnName("Created_Date");
+
+                entity.Property(e => e.IsActive)
+                    .HasColumnName("Is_Active")
+                    .HasColumnType("tinyint(1)");
 
                 entity.Property(e => e.ModifiedBy)
                     .HasColumnName("Modified_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.StoreId).HasColumnName("Store_Id");
+                entity.Property(e => e.ModifiedDate).HasColumnName("Modified_Date");
+
+                entity.Property(e => e.PublishEndTime).HasColumnName("Publish_End_Time");
+
+                entity.Property(e => e.PublishStateTime).HasColumnName("Publish_State_Time");
+
+                entity.Property(e => e.StoreId)
+                    .HasColumnName("Store_Id")
+                    .HasColumnType("int(11)");
 
                 entity.HasOne(d => d.Store)
                     .WithMany(p => p.Menu)

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Common.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,9 @@ namespace WebAPI.Handlers
     {
         public AutoMapper()
         {
-            CreateMap<IEnumerable<Brand>, IEnumerable<BrandModel>>();
-            //CreateMap<BrandModel, Brand>();
+            CreateMap<Brand, BrandModel>();
+            CreateMap<Item, ItemModel>();
+            CreateMap<Menu, MenuModel>();
         }
     }
 }

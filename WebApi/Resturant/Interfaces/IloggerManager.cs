@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Common.logger
+namespace WebAPI.Interfaces
 {
     public interface IloggerManager
     {

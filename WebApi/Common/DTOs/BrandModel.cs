@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace WebAPI.Entities
+namespace Common.DTOs
 {
-    public partial class BrandModel
+    public class BrandModel
     {
         public int BrandId { get; set; }
         public string Name { get; set; }

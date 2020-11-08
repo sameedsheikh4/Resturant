@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Common.logger;
+using Common.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Entities;
+using WebAPI.Interfaces;
 using WebAPI.Interfaces.Services;
 
 namespace WebAPI.Controllers
@@ -18,6 +19,8 @@ namespace WebAPI.Controllers
         private readonly IBrandService _brandService;
         private readonly IMapper mapper;
         private readonly IloggerManager logger;
+        private IEnumerable<BrandModel> IEnumerable { get; set; }
+        private BrandModel Model { get; set; }
 
         public BrandsController(IBrandService BrandService, IMapper Mapper, IloggerManager Logger)
         {
@@ -33,36 +36,39 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IEnumerable<Brand>> GetBrandsById(int Id)
+        public async Task<IActionResult> GetBrandsById(int Id)
         {
             logger.LogInfo(nameof(GetBrandsById));
-            return await _brandService.GetBrandsByIdAsync(Id);
+            IEnumerable = mapper.Map<IEnumerable<BrandModel>>(await _brandService.GetBrandsByIdAsync(Id));
+            return Ok(IEnumerable);
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Brand>> GetAllBrands()
+        public async Task<IActionResult> GetAllBrands()
         {
-            IEnumerable<Brand> Model = await _brandService.GetAll();
-            return (IEnumerable<Brand>)mapper.Map<BrandModel>(Model);
-
+            IEnumerable = mapper.Map<IEnumerable<BrandModel>>(await _brandService.GetAll());
+            return Ok(IEnumerable);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Brand>> PostBrand(Brand Brand)
+        public async Task<IActionResult> PostBrand(Brand Brand)
         {
-            return await _brandService.AddBrandAsync(Brand);
+            Model = mapper.Map<BrandModel>(await _brandService.AddBrandAsync(Brand));
+            return Ok(Model);
         }
 
         [HttpPut]
-        public async Task<ActionResult<Brand>> PutBrand(Brand Brand)
+        public async Task<IActionResult> PutBrand(Brand Brand)
         {
-            return await _brandService.UpdateBrandAsync(Brand);
+            IEnumerable = mapper.Map<IEnumerable<BrandModel>>(await _brandService.UpdateBrandAsync(Brand));
+            return Ok(IEnumerable);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Brand>> IsActive(int Id)
+        public async Task<IActionResult> IsActive(int Id)
         {
-            return await _brandService.IsActive(Id);
+            IEnumerable = mapper.Map<IEnumerable<BrandModel>>(await _brandService.IsActive(Id));            
+            return Ok(IEnumerable);
         }
 
     }

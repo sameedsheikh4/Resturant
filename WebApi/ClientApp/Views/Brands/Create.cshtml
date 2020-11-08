@@ -1,0 +1,113 @@
+﻿@model Common.DTOs.BrandModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>BrandModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Insert">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Website" class="control-label"></label>
+                <input asp-for="Website" class="form-control" />
+                <span asp-validation-for="Website" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mobile" class="control-label"></label>
+                <input asp-for="Mobile" class="form-control" />
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WhatsApp" class="control-label"></label>
+                <input asp-for="WhatsApp" class="form-control" />
+                <span asp-validation-for="WhatsApp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FacebookId" class="control-label"></label>
+                <input asp-for="FacebookId" class="form-control" />
+                <span asp-validation-for="FacebookId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TwitterId" class="control-label"></label>
+                <input asp-for="TwitterId" class="form-control" />
+                <span asp-validation-for="TwitterId" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinimumOrder" class="control-label"></label>
+                <input asp-for="MinimumOrder" class="form-control" />
+                <span asp-validation-for="MinimumOrder" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeliveryCharges" class="control-label"></label>
+                <input asp-for="DeliveryCharges" class="form-control" />
+                <span asp-validation-for="DeliveryCharges" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FreeDeliveryAmount" class="control-label"></label>
+                <input asp-for="FreeDeliveryAmount" class="form-control" />
+                <span asp-validation-for="FreeDeliveryAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeliveryMinutes" class="control-label"></label>
+                <input asp-for="DeliveryMinutes" class="form-control" />
+                <span asp-validation-for="DeliveryMinutes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaxRegistrationNumber" class="control-label"></label>
+                <input asp-for="TaxRegistrationNumber" class="form-control" />
+                <span asp-validation-for="TaxRegistrationNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaxEntity" class="control-label"></label>
+                <input asp-for="TaxEntity" class="form-control" />
+                <span asp-validation-for="TaxEntity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaxPercent" class="control-label"></label>
+                <input asp-for="TaxPercent" class="form-control" />
+                <span asp-validation-for="TaxPercent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OperatingHoursText" class="control-label"></label>
+                <input asp-for="OperatingHoursText" class="form-control" />
+                <span asp-validation-for="OperatingHoursText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

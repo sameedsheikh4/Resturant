@@ -1,0 +1,190 @@
+﻿@model IEnumerable<Common.DTOs.BrandModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BrandId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Logo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Website)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mobile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhatsApp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FacebookId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TwitterId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MinimumOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliveryCharges)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FreeDeliveryAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliveryMinutes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaxRegistrationNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaxEntity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaxPercent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OperatingHoursText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArchivedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activation_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Deactivation_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modified_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Archived_Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrandId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Logo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Website)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WhatsApp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FacebookId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TwitterId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinimumOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryCharges)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FreeDeliveryAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryMinutes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaxRegistrationNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaxEntity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaxPercent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OperatingHoursText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArchivedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activation_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deactivation_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modified_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Archived_Date)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.BrandId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

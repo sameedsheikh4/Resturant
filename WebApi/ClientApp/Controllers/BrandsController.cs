@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using ClientApp.TypedClient;
+using ClientApp.Services.TypedClient;
+using Common.DTOs;
 using Microsoft.AspNetCore.Mvc;
-using WebAPI.Entities;
+
 
 namespace ClientApp.Controllers
 {
@@ -24,9 +25,11 @@ namespace ClientApp.Controllers
             try
             {
                 IEnumerable<BrandModel> model = await _client.GetBrandsAsync();
-                return View(model);
+                if (model != null)
+                    return View(model);
+                return View();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return View();
             }
@@ -52,6 +55,12 @@ namespace ClientApp.Controllers
                 ModelState.AddModelError(string.Empty, ex.ToString());
                 return RedirectToAction(nameof(Create));
             }
+        }
+
+        public async Task<IActionResult> Delete(int Id)
+        {
+            await _client.DeleteBrandAsync(Id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
