@@ -51,5 +51,26 @@ namespace ClientApp.Controllers
             await _client.DeleteMenuAsync(Id);
             return RedirectToAction(nameof(Index));
         }
+        public async Task<IActionResult> Edit(int Id)
+        {
+            List = await _client.GetMenusByIdAsync(Id);
+            Model = List.First();
+            return View(Model);
+        }
+        public async Task<IActionResult> Update(MenuModel Entity)
+        {
+            try
+            {
+                Entity.ModifiedBy = "sameed";
+                Entity.ModifiedDate = DateTime.Now;
+                Model = await _client.UpdateMenuAsync(Entity);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction(nameof(Edit));
+            }
+        }
+
     }
 }

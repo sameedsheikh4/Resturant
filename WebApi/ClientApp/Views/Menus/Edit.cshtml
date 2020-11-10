@@ -1,4 +1,4 @@
-﻿@model Common.DTOs.ItemModel
+﻿@model Common.DTOs.MenuModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,31 +6,31 @@
 
 <h1>Edit</h1>
 
-<h4>ItemModel</h4>
+<h4>MenuModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Update">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group" hidden>
-                <label asp-for="ItemId" class="control-label"></label>
-                <input asp-for="ItemId" class="form-control"/>
-                <span asp-validation-for="ItemId" class="text-danger"></span>
+                <label asp-for="MenuId" class="control-label"></label>
+                <input asp-for="MenuId" class="form-control" />
+                <span asp-validation-for="MenuId" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="StoreId" class="control-label"></label>
+                <input asp-for="StoreId" class="form-control" />
+                <span asp-validation-for="StoreId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="PublishStateTime" class="control-label"></label>
+                <input asp-for="PublishStateTime" class="form-control" />
+                <span asp-validation-for="PublishStateTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IsOutOfStock" class="control-label"></label>
-                <input asp-for="IsOutOfStock" class="form-control" />
-                <span asp-validation-for="IsOutOfStock" class="text-danger"></span>
+                <label asp-for="PublishEndTime" class="control-label"></label>
+                <input asp-for="PublishEndTime" class="form-control" />
+                <span asp-validation-for="PublishEndTime" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IsActive" class="control-label"></label>

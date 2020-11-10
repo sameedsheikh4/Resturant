@@ -60,7 +60,8 @@ namespace ClientApp.Controllers
         public async Task<IActionResult> Edit(int Id)
         {
             List = await _client.GetItemsByIdAsync(Id);
-            return View(List);
+            Model = List.First();
+            return View(Model);
         }
 
         public async Task<IActionResult> Update(ItemModel Entity)
@@ -74,7 +75,7 @@ namespace ClientApp.Controllers
             }
             catch (Exception ex)
             {
-                return View();
+                return RedirectToAction(nameof(Edit));
             }
         }
     }

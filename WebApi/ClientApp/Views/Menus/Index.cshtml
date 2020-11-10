@@ -85,7 +85,7 @@
                 @Html.DisplayFor(modelItem => item.ArchivedDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.MenuId }) |
                 @Html.ActionLink("Delete", "Delete", new { id=item.MenuId })
             </td>
         </tr>

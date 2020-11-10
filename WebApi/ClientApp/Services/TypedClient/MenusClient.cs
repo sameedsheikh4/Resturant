@@ -60,7 +60,7 @@ namespace ClientApp.Services.TypedClient
             HttpContent ModelJson = Helper.CreateHttpContent(menuModel);
 
             var HttpResponse =
-                await Client.PutAsync("api/Menu", ModelJson);
+                await Client.PutAsync("api/Menus", ModelJson);
 
             if (HttpResponse.IsSuccessStatusCode)
             {
