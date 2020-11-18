@@ -8,6 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Entities\Aspnetroleclaims.cs" />
+    <Compile Remove="Entities\Aspnetroles.cs" />
+    <Compile Remove="Entities\Aspnetuserclaims.cs" />
+    <Compile Remove="Entities\Aspnetuserlogins.cs" />
+    <Compile Remove="Entities\Aspnetuserroles.cs" />
+    <Compile Remove="Entities\Aspnetusers.cs" />
+    <Compile Remove="Entities\Aspnetusertokens.cs" />
+    <Compile Remove="Entities\UserRefreshTokens.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />

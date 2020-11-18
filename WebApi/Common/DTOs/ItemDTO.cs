@@ -4,8 +4,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Common.DTOs
 {
-    public class ItemModel
+    public class ItemDTO
     {
+        //public ItemDTO()
+        //{
+        //    ItemPhoto = new HashSet<ItemPhotoDTO>();
+        //    MenuItem = new HashSet<MenuItemDTO>();
+        //}
+
         public int ItemId { get; set; }
         [Required]
         public string Name { get; set; }
@@ -18,5 +24,8 @@ namespace Common.DTOs
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public DateTime? ArchivedDate { get; set; }
+
+        public virtual ICollection<ItemPhotoDTO> ItemPhoto { get; set; }
+        public virtual ICollection<MenuItemDTO> MenuItem { get; set; }
     }
 }

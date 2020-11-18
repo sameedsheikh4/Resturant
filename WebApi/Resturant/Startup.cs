@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Serialization;
 using NLog;
 using WebAPI.Entities;
 using WebAPI.Interfaces;
@@ -41,6 +42,18 @@ namespace Resturant
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddMvc()
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                    .AddJsonOptions(opt =>
+                    {
+                        // WK - This is done as Parent->Child contains Parent reference
+                        opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+                        // WK - This is done to force PascalCase attributes
+                        opt.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                    }
+                    );
+
             //Register AutoMapper
             services.AddAutoMapper(typeof(Startup));
             //Register swagger service
@@ -68,6 +81,12 @@ namespace Resturant
             services.AddTransient<IMenusRepo, MenusRepo>();
             services.AddTransient<IMenusService, MenusService>();
 
+            services.AddTransient<IMenuCategoriesRepo, MenuCategoriesRepo>();
+            services.AddTransient<IMenuCategoryService, MenuCategoryService>();
+
+            services.AddTransient<IMenuItemsRepo, MenuItemsRepo>();
+            services.AddTransient<IMenuItemService, MenuItemService>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -82,7 +101,7 @@ namespace Resturant
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
-            }            
+            }
             app.UseMvc();
         }
     }

@@ -11,15 +11,13 @@ namespace ClientApp.Controllers
 {
     public class ItemsController : Controller
     {
-        private readonly IHttpClientFactory _clientFactory;
         protected ItemsClient _client;
 
-        IEnumerable<ItemModel> List { get; set; }
-        ItemModel Model { get; set; }
+        IEnumerable<ItemDTO> List { get; set; }
+        ItemDTO Model { get; set; }
 
-        public ItemsController(IHttpClientFactory clientFactory, ItemsClient client)
+        public ItemsController(ItemsClient client)
         {
-            _clientFactory = clientFactory;
             _client = client;
         }
 
@@ -38,10 +36,11 @@ namespace ClientApp.Controllers
             }
         }
 
-        public async Task<IActionResult> Create(ItemModel Entity)
+        public async Task<IActionResult> Create(ItemDTO Entity)
         {
             if (ModelState.IsValid)
-            {                
+            {
+                Entity.CreatedBy = "sameed";
                 Model = await _client.CreateItemAsync(Entity);
                 return RedirectToAction(nameof(Index));
             }
@@ -64,7 +63,7 @@ namespace ClientApp.Controllers
             return View(Model);
         }
 
-        public async Task<IActionResult> Update(ItemModel Entity)
+        public async Task<IActionResult> Update(ItemDTO Entity)
         {
             try
             {

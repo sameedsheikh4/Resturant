@@ -7,7 +7,8 @@ namespace WebAPI.Entities
     {
         public string UserId { get; set; }
         public string RefreshToken { get; set; }
+        public DateTime TokenDate { get; set; }
 
-        //public virtual Aspnetusers User { get; set; }
+        public virtual Aspnetusers User { get; set; }
     }
 }

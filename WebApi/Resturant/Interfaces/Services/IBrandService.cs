@@ -10,8 +10,8 @@ namespace WebAPI.Interfaces.Services
     {
         Task<IEnumerable<Brand>> GetBrandsByIdAsync(int Id);
         Task<IEnumerable<Brand>> GetAll();
-        Task<Brand> AddBrandAsync(Brand Brand);
-        Task<Brand> UpdateBrandAsync(Brand Brand);
+        Task<Brand> AddBrandAsync(Brand Entity);
+        Task<Brand> UpdateBrandAsync(Brand Entity);
         Task<bool> DeleteBrandAsync(int Id);
         Task<Brand> IsActive(int Id);
     }

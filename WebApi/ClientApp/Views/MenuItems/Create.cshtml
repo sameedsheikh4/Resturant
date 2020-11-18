@@ -1,0 +1,68 @@
+﻿@model Common.DTOs.MenuItemDTO
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MenuItemDTO</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                <label asp-for="MenuItemId" class="control-label"></label>
+                <input asp-for="MenuItemId" class="form-control" />
+                <span asp-validation-for="MenuItemId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="StoreId" class="control-label"></label>
+                <input asp-for="StoreId" class="form-control" />
+                <span asp-validation-for="StoreId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemId" class="control-label"></label>
+                <input asp-for="ItemId" class="form-control" />
+                <span asp-validation-for="ItemId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MenuId" class="control-label"></label>
+                <select asp-for="MenuId" asp-items="@(new SelectList(ViewBag.Menus,"MenuId","PublishStateTime"))"></select>
+                <span asp-validation-for="MenuId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MenuCategoryId" class="control-label"></label>
+                <select asp-for="MenuCategoryId" asp-items="@(new SelectList(ViewBag.MenuCat,"MenuCategoryId","Name"))"></select>
+                <span asp-validation-for="MenuCategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsOutOfStock" /> @Html.DisplayNameFor(model => model.IsOutOfStock)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

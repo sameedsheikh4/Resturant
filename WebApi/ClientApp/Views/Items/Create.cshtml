@@ -1,4 +1,4 @@
-﻿@model Common.DTOs.ItemModel
+﻿@model Common.DTOs.ItemDTO
 
 @{
     ViewData["Title"] = "Create";
@@ -21,6 +21,21 @@
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="ItemPhoto[0].Location" class="control-label">Location</label>
+                <input name="ItemPhoto[0].Location" class="form-control" />
+                <span name="ItemPhoto[0].Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="ItemPhoto[0].CreatedBy" class="control-label">Created By</label>
+                <input name="ItemPhoto[0].CreatedBy" class="form-control" />
+                <span name="ItemPhoto[0].CreatedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="ItemPhoto[0].CreatedDate" class="control-label">Created Date</label>
+                <input name="ItemPhoto[0].CreatedDate" class="form-control" />
+                <span name="ItemPhoto[0].CreatedDate" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">

@@ -11,13 +11,11 @@ namespace ClientApp.Controllers
 {
     public class MenusController : Controller
     {
-        private readonly IHttpClientFactory _clientFactory;
         protected MenusClient _client;
-        IEnumerable<MenuModel> List { get; set; }
-        MenuModel Model { get; set; }
-        public MenusController(IHttpClientFactory httpClientFactory, MenusClient client)
+        IEnumerable<MenuDTO> List { get; set; }
+        MenuDTO Model { get; set; }
+        public MenusController(MenusClient client)
         {
-            _clientFactory = httpClientFactory;
             _client = client;
         }
         public async Task<IActionResult> Index()
@@ -34,7 +32,7 @@ namespace ClientApp.Controllers
                 return View();
             }
         }
-        public async Task<IActionResult> Create(MenuModel Entity)
+        public async Task<IActionResult> Create(MenuDTO Entity)
         {
             if (Entity.StoreId != 0)
             {
@@ -57,7 +55,7 @@ namespace ClientApp.Controllers
             Model = List.First();
             return View(Model);
         }
-        public async Task<IActionResult> Update(MenuModel Entity)
+        public async Task<IActionResult> Update(MenuDTO Entity)
         {
             try
             {

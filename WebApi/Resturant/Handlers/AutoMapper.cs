@@ -12,9 +12,12 @@ namespace WebAPI.Handlers
     {
         public AutoMapper()
         {
-            CreateMap<Brand, BrandModel>();
-            CreateMap<Item, ItemModel>();
-            CreateMap<Menu, MenuModel>();
+            CreateMap<Brand, BrandDTO>();
+            CreateMap<Item, ItemDTO>();
+            CreateMap<ItemPhoto, ItemPhotoDTO>();
+            CreateMap<Menu, MenuDTO>();
+            CreateMap<MenuCategory, MenuCategoryDTO>();
+            CreateMap<MenuItem, MenuItemDTO>();
         }
     }
 }

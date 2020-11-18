@@ -43,6 +43,16 @@ namespace ClientApp
                 option.BaseAddress = new Uri(Url);
             });
 
+            services.AddHttpClient<MenuCategoriesClient>(option =>
+            {
+                option.BaseAddress = new Uri(Url);
+            });
+
+            services.AddHttpClient<MenuItemClient>(option =>
+            {
+                option.BaseAddress = new Uri(Url);
+            });
+
             services.AddTransient<IHttpClientHelper, HttpClientHelper>();
 
 

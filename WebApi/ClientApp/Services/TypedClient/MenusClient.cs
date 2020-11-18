@@ -11,9 +11,9 @@ namespace ClientApp.Services.TypedClient
 {
     public class MenusClient
     {
-        public HttpClient Client { get; }
-        public IHttpClientHelper Helper { get; }
-        public MenuModel Model;
+        private readonly HttpClient Client;
+        private readonly IHttpClientHelper Helper;
+        public MenuDTO Model;
 
         public MenusClient(HttpClient Client, IHttpClientHelper helper)
         {
@@ -21,63 +21,45 @@ namespace ClientApp.Services.TypedClient
             Helper = helper;
         }
 
-        public async Task<IEnumerable<MenuModel>> GetMenusAsync()
+        public async Task<IEnumerable<MenuDTO>> GetMenusAsync()
         {
-            var Response = await Client.GetAsync("api/Menus");
-            Response.EnsureSuccessStatusCode();
-            var ResponseStream = await Response.Content.ReadAsStringAsync();
-
-            return JsonConvert.DeserializeObject<IEnumerable<MenuModel>>(ResponseStream);
+            var HttpResponse = await Client.GetAsync("api/Menus");
+            return await Helper.ResponseParsingListAsync<MenuDTO>(HttpResponse);
         }
-        public async Task<IEnumerable<MenuModel>> GetMenusByIdAsync(int Id)
+        public async Task<IEnumerable<MenuDTO>> GetMenusByIdAsync(int Id)
         {
-            var Response = await Client.GetAsync($"api/Menus/{Id}");
-            Response.EnsureSuccessStatusCode();
-            var ResponseStream = await Response.Content.ReadAsStringAsync();
+            var HttpResponse = await Client.GetAsync($"api/Menus/{Id}");
 
-            return JsonConvert.DeserializeObject<IEnumerable<MenuModel>>(ResponseStream);
+            return await Helper.ResponseParsingListAsync<MenuDTO>(HttpResponse);
         }
-        public async Task<MenuModel> CreateMenuAsync(MenuModel menuModel)
+        public async Task<MenuDTO> CreateMenuAsync(MenuDTO Entity)
         {
 
-            HttpContent ModelJson = Helper.CreateHttpContent(menuModel);
+            HttpContent content = Helper.CreateHttpContent(Entity);
 
             var HttpResponse =
-                await Client.PostAsync("api/Menus", ModelJson);
+                await Client.PostAsync("api/Menus", content);
 
             if (HttpResponse.IsSuccessStatusCode)
-            {
-                var responseStream = await HttpResponse.Content.ReadAsStringAsync();
-                Model = JsonConvert.DeserializeObject<MenuModel>(responseStream);
-            }
-
-            HttpResponse.EnsureSuccessStatusCode();
+                Model = await Helper.ResponseParsingAsync<MenuDTO>(HttpResponse);
 
             return Model;
         }
-        public async Task<MenuModel> UpdateMenuAsync(MenuModel menuModel)
+        public async Task<MenuDTO> UpdateMenuAsync(MenuDTO Entity)
         {
-            HttpContent ModelJson = Helper.CreateHttpContent(menuModel);
+            HttpContent content = Helper.CreateHttpContent(Entity);
 
             var HttpResponse =
-                await Client.PutAsync("api/Menus", ModelJson);
+                await Client.PutAsync("api/Menus", content);
 
             if (HttpResponse.IsSuccessStatusCode)
-            {
-                var responseStream = await HttpResponse.Content.ReadAsStringAsync();
-                Model = JsonConvert.DeserializeObject<MenuModel>(responseStream);
-            }
-
-            HttpResponse.EnsureSuccessStatusCode();
+                Model = await Helper.ResponseParsingAsync<MenuDTO>(HttpResponse);
 
             return Model;
         }
         public async Task DeleteMenuAsync(int Id)
         {
-            var HttpResponse =
-                await Client.DeleteAsync($"api/Menus/{Id}");
-
-            HttpResponse.EnsureSuccessStatusCode();
+            await Client.DeleteAsync($"api/Menus/{Id}");
         }
     }
 }

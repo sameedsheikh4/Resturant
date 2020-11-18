@@ -10,8 +10,8 @@ namespace WebAPI.Interfaces.Services
     {
         Task<IEnumerable<Menu>> GetMenusByIdAsync(int Id);
         Task<IEnumerable<Menu>> GetAll();
-        Task<Menu> AddMenuAsync(Menu Menu);
-        Task<Menu> UpdateMenuAsync(Menu Menu);
+        Task<Menu> AddMenuAsync(Menu Entity);
+        Task<Menu> UpdateMenuAsync(Menu Entity);
         Task<bool> DeleteMenuAsync(int Id);
         Task<Menu> IsArchive(int Id);
     }

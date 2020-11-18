@@ -11,71 +11,54 @@ namespace ClientApp.Services.TypedClient
 {
     public class ItemsClient
     {
-        public HttpClient Client { get; }
-        public IHttpClientHelper Helper { get; }
-        public ItemModel Model;
+        private readonly HttpClient Client;
+        private readonly IHttpClientHelper Helper;
+
+        public ItemDTO Model;
         public ItemsClient(HttpClient Client, IHttpClientHelper helper)
         {
             this.Client = Client;
             Helper = helper;
         }
-        public async Task<IEnumerable<ItemModel>> GetItemsAsync()
+        public async Task<IEnumerable<ItemDTO>> GetItemsAsync()
         {
-            var Response = await Client.GetAsync("api/Items");
-            Response.EnsureSuccessStatusCode();
-            var ResponseStream = await Response.Content.ReadAsStringAsync();
+            var HttpResponse = await Client.GetAsync("api/Items");
 
-            return JsonConvert.DeserializeObject<IEnumerable<ItemModel>>(ResponseStream);
+            return await Helper.ResponseParsingListAsync<ItemDTO>(HttpResponse);
         }
-        public async Task<IEnumerable<ItemModel>> GetItemsByIdAsync(int Id)
+        public async Task<IEnumerable<ItemDTO>> GetItemsByIdAsync(int Id)
         {
-            var Response = await Client.GetAsync($"api/Items/{Id}");
-            Response.EnsureSuccessStatusCode();
-            var ResponseStream = await Response.Content.ReadAsStringAsync();
+            var HttpResponse = await Client.GetAsync($"api/Items/{Id}");
 
-            return JsonConvert.DeserializeObject<IEnumerable<ItemModel>>(ResponseStream);
+            return await Helper.ResponseParsingListAsync<ItemDTO>(HttpResponse);
         }
-        public async Task<ItemModel> CreateItemAsync(ItemModel itemModel)
+        public async Task<ItemDTO> CreateItemAsync(ItemDTO Entity)
         {
 
-            HttpContent ModelJson = Helper.CreateHttpContent(itemModel);
+            HttpContent content = Helper.CreateHttpContent(Entity);
 
             var HttpResponse =
-                await Client.PostAsync("api/Items", ModelJson);
+                await Client.PostAsync("api/Items", content);
 
-            if (HttpResponse.IsSuccessStatusCode)
-            {
-                var responseStream = await HttpResponse.Content.ReadAsStringAsync();
-                Model = JsonConvert.DeserializeObject<ItemModel>(responseStream);
-            }
-
-            HttpResponse.EnsureSuccessStatusCode();
+            Model = await Helper.ResponseParsingAsync<ItemDTO>(HttpResponse);
 
             return Model;
         }
-        public async Task<ItemModel> UpdateItemAsync(ItemModel itemModel)
+        public async Task<ItemDTO> UpdateItemAsync(ItemDTO Entity)
         {
-            HttpContent ModelJson = Helper.CreateHttpContent(itemModel);
+            HttpContent content = Helper.CreateHttpContent(Entity);
 
             var HttpResponse =
-                await Client.PutAsync("api/Items", ModelJson);
+                await Client.PutAsync("api/Items", content);
 
             if (HttpResponse.IsSuccessStatusCode)
-            {
-                var responseStream = await HttpResponse.Content.ReadAsStringAsync();
-                Model = JsonConvert.DeserializeObject<ItemModel>(responseStream);
-            }
-
-            HttpResponse.EnsureSuccessStatusCode();
+                Model = await Helper.ResponseParsingAsync<ItemDTO>(HttpResponse);
 
             return Model;
         }
         public async Task DeleteItemAsync(int Id)
         {
-            var HttpResponse =
-                await Client.DeleteAsync($"api/Items/{Id}");
-
-            HttpResponse.EnsureSuccessStatusCode();
+            await Client.DeleteAsync($"api/Items/{Id}");
         }
     }
 }

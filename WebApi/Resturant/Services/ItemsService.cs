@@ -33,7 +33,7 @@ namespace WebAPI.Services
 
         public async Task<IEnumerable<Item>> GetItemsByIdAsync(int Id)
         {
-            return await _repo.GetByIdAsync(x => x.ItemId == Id);
+            return await _repo.GetByIdAsync(x => x.ItemId == Id && x.ArchivedDate == null, "ItemPhoto");
         }
 
         public async Task<Item> IsArchive(int Id)

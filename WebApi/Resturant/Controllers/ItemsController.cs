@@ -16,8 +16,8 @@ namespace WebAPI.Controllers
     {
         private readonly IItemService service;
         private readonly IMapper mapper;
-        private IEnumerable<ItemModel> List { get; set; }
-        private ItemModel Model { get; set; }
+        private IEnumerable<ItemDTO> List { get; set; }
+        private ItemDTO Model { get; set; }
         public ItemsController(IItemService Service, IMapper Mapper)
         {
             service = Service;
@@ -28,31 +28,31 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> GetItemsById(int Id)
         {
             //logger.LogInfo(nameof(GetBrandsById));
-            List = mapper.Map<IEnumerable<ItemModel>>(await service.GetItemsByIdAsync(Id));
+            List = mapper.Map<IEnumerable<ItemDTO>>(await service.GetItemsByIdAsync(Id));
             return Ok(List);
         }
         [HttpGet]
         public async Task<IActionResult> GetAllItems()
         {
-            List = mapper.Map<IEnumerable<ItemModel>>(await service.GetAll());
+            List = mapper.Map<IEnumerable<ItemDTO>>(await service.GetAll());
             return Ok(List);
         }
         [HttpPost]
-        public async Task<IActionResult> PostItem(Item Item)
+        public async Task<IActionResult> PostItem(Item Entity)
         {
-            Model = mapper.Map<ItemModel>(await service.AddItemAsync(Item));
+            Model = mapper.Map<ItemDTO>(await service.AddItemAsync(Entity));
             return Ok(Model);
         }
         [HttpPut]
-        public async Task<IActionResult> PutItem(Item Item)
+        public async Task<IActionResult> PutItem(Item Entity)
         {
-            Model = mapper.Map<ItemModel>(await service.UpdateItemAsync(Item));
+            Model = mapper.Map<ItemDTO>(await service.UpdateItemAsync(Entity));
             return Ok(Model);
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> IsArchive(int Id)
         {
-            Model = mapper.Map<ItemModel>(await service.IsArchive(Id));
+            Model = mapper.Map<ItemDTO>(await service.IsArchive(Id));
             return Ok(Model);
         }
 

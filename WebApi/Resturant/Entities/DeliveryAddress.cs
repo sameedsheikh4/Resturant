@@ -16,9 +16,12 @@ namespace WebAPI.Entities
         public string StreetAddress { get; set; }
         public int CityId { get; set; }
         public int CountryId { get; set; }
+        public DateTime? ArchivedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
         public string ArchivedBy { get; set; }
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
+        public DateTime CreatedDate { get; set; }
 
         public virtual City City { get; set; }
         public virtual Country Country { get; set; }

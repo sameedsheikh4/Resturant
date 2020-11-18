@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace ClientApp.Handler
 {
-    public class KBDelegatingHandler : DelegatingHandler
+    public class ResturantDelegatingHandler : DelegatingHandler
     {
         private readonly ILogger _logger;
-        public KBDelegatingHandler(ILogger Logger)
+        public ResturantDelegatingHandler(ILogger Logger)
         {
             _logger = Logger;
         }

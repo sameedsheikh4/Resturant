@@ -17,7 +17,7 @@ namespace WebAPI.Services
         }
         public async Task<Brand> AddBrandAsync(Brand brand)
         {
-            brand.Created_Date = DateTime.Now;
+            brand.CreatedDate = DateTime.Now;
             return await _brandsRepo.AddAsync(brand);
         }
 
@@ -33,7 +33,7 @@ namespace WebAPI.Services
 
         public async Task<IEnumerable<Brand>> GetBrandsByIdAsync(int id)
         {
-            return await _brandsRepo.GetByIdAsync(x => x.BrandId == id);
+            return await _brandsRepo.GetByIdAsync(x => x.BrandId == id, null);
         }
 
         public async Task<Brand> IsActive(int Id)

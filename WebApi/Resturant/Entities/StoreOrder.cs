@@ -15,6 +15,7 @@ namespace WebAPI.Entities
         public int OrderId { get; set; }
         public int StoreId { get; set; }
         public byte Type { get; set; }
+        public DateTime Date { get; set; }
         public string CustomerId { get; set; }
         public int PhoneNumber { get; set; }
         public int DeliveryAddressId { get; set; }
@@ -24,9 +25,12 @@ namespace WebAPI.Entities
         public decimal? DiscountPercent { get; set; }
         public decimal? DiscountAmount { get; set; }
         public decimal NetPayable { get; set; }
+        public DateTime? ArchivedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
         public string ArchivedBy { get; set; }
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
+        public DateTime CreatedDate { get; set; }
         public string Remarks { get; set; }
 
         public virtual User Customer { get; set; }

@@ -15,7 +15,14 @@ namespace WebAPI.Entities
             : base(options)
         {
         }
-        
+
+        //public virtual DbSet<Aspnetroleclaims> Aspnetroleclaims { get; set; }
+        //public virtual DbSet<Aspnetroles> Aspnetroles { get; set; }
+        //public virtual DbSet<Aspnetuserclaims> Aspnetuserclaims { get; set; }
+        //public virtual DbSet<Aspnetuserlogins> Aspnetuserlogins { get; set; }
+        //public virtual DbSet<Aspnetuserroles> Aspnetuserroles { get; set; }
+        //public virtual DbSet<Aspnetusers> Aspnetusers { get; set; }
+        //public virtual DbSet<Aspnetusertokens> Aspnetusertokens { get; set; }
         public virtual DbSet<Brand> Brand { get; set; }
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<Country> Country { get; set; }
@@ -38,70 +45,103 @@ namespace WebAPI.Entities
         public virtual DbSet<StoreOrder> StoreOrder { get; set; }
         public virtual DbSet<StoreUser> StoreUser { get; set; }
         public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<UserRefreshTokens> UserRefreshTokens { get; set; }
+        //public virtual DbSet<UserRefreshTokens> UserRefreshTokens { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {           
+        {          
 
             modelBuilder.Entity<Brand>(entity =>
             {
                 entity.ToTable("brand");
 
-                entity.Property(e => e.BrandId).HasColumnName("Brand_Id");
+                entity.Property(e => e.BrandId)
+                    .HasColumnName("Brand_Id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.ActivationDate).HasColumnName("Activation_Date");
 
                 entity.Property(e => e.ArchivedBy)
                     .HasColumnName("Archived_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ArchivedDate).HasColumnName("Archived_Date");
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasColumnName("Created_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedDate).HasColumnName("Created_Date");
+
+                entity.Property(e => e.DeactivationDate).HasColumnName("Deactivation_Date");
 
                 entity.Property(e => e.DeliveryCharges)
                     .HasColumnName("Delivery_Charges")
                     .HasColumnType("decimal(10,2)");
 
-                entity.Property(e => e.DeliveryMinutes).HasColumnName("Delivery_Minutes");
+                entity.Property(e => e.DeliveryMinutes)
+                    .HasColumnName("Delivery_Minutes")
+                    .HasColumnType("smallint(6)");
 
-                entity.Property(e => e.Email).HasMaxLength(100);
+                entity.Property(e => e.Email)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.FacebookId)
                     .HasColumnName("Facebook_Id")
-                    .HasMaxLength(100);
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.FreeDeliveryAmount)
                     .HasColumnName("Free_Delivery_Amount")
                     .HasColumnType("decimal(10,2)");
 
                 entity.Property(e => e.IsActive)
-                .HasColumnName("Is_Active")
-                .HasConversion(new BoolToZeroOneConverter<Int16>());
+                    .HasColumnName("Is_Active")
+                    .HasColumnType("tinyint(1)")
+                    .HasConversion(new BoolToZeroOneConverter<Int16>());
 
-                entity.Property(e => e.Logo).HasMaxLength(1000);
+                entity.Property(e => e.Logo)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.MinimumOrder)
                     .HasColumnName("Minimum_Order")
                     .HasColumnType("decimal(10,2)");
 
+                entity.Property(e => e.Mobile).HasColumnType("smallint(6)");
+
                 entity.Property(e => e.ModifiedBy)
                     .HasColumnName("Modified_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModifiedDate).HasColumnName("Modified_Date");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.OperatingHoursText)
                     .IsRequired()
                     .HasColumnName("Operating_Hours_Text")
-                    .HasMaxLength(200);
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Phone).HasColumnType("smallint(6)");
 
                 entity.Property(e => e.TaxEntity)
                     .IsRequired()
                     .HasColumnName("Tax_Entity")
-                    .HasMaxLength(50);
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.TaxPercent)
                     .HasColumnName("Tax_Percent")
@@ -110,23 +150,19 @@ namespace WebAPI.Entities
                 entity.Property(e => e.TaxRegistrationNumber)
                     .IsRequired()
                     .HasColumnName("Tax_Registration_Number")
-                    .HasMaxLength(50);
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.TwitterId)
                     .HasColumnName("Twitter_Id")
-                    .HasMaxLength(100);
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Website).HasMaxLength(200);
+                entity.Property(e => e.Website)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Activation_Date);
-
-                entity.Property(e => e.Deactivation_Date);
-
-                entity.Property(e => e.Created_Date);
-
-                entity.Property(e => e.Modified_Date);
-                
-                entity.Property(e => e.Archived_Date);
+                entity.Property(e => e.WhatsApp).HasColumnType("smallint(6)");
             });
 
             modelBuilder.Entity<City>(entity =>
@@ -136,9 +172,13 @@ namespace WebAPI.Entities
                 entity.HasIndex(e => e.CountryId)
                     .HasName("country_city_fk");
 
-                entity.Property(e => e.CityId).HasColumnName("City_Id");
+                entity.Property(e => e.CityId)
+                    .HasColumnName("City_Id")
+                    .HasColumnType("int(11)");
 
-                entity.Property(e => e.CountryId).HasColumnName("Country_Id");
+                entity.Property(e => e.CountryId)
+                    .HasColumnName("Country_Id")
+                    .HasColumnType("int(11)");
 
                 entity.HasOne(d => d.Country)
                     .WithMany(p => p.City)
@@ -151,30 +191,41 @@ namespace WebAPI.Entities
             {
                 entity.ToTable("country");
 
-                entity.Property(e => e.CountryId).HasColumnName("Country_Id");
+                entity.Property(e => e.CountryId)
+                    .HasColumnName("Country_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.CurrencyName)
                     .IsRequired()
                     .HasColumnName("Currency_Name")
-                    .HasMaxLength(50);
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CurrencySymbol)
                     .IsRequired()
                     .HasColumnName("Currency_Symbol")
-                    .HasMaxLength(10);
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasMaxLength(100);
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Dataprotectionkeys>(entity =>
             {
                 entity.ToTable("dataprotectionkeys");
 
-                entity.Property(e => e.FriendlyName).HasMaxLength(1000);
+                entity.Property(e => e.Id).HasColumnType("int(1)");
 
-                entity.Property(e => e.Xml).HasMaxLength(1000);
+                entity.Property(e => e.FriendlyName)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Xml)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<DeliveryAddress>(entity =>
@@ -190,35 +241,54 @@ namespace WebAPI.Entities
                 entity.HasIndex(e => e.UserId)
                     .HasName("user_delivery_address_fk");
 
-                entity.Property(e => e.DeliveryAddressId).HasColumnName("Delivery_Address_Id");
+                entity.Property(e => e.DeliveryAddressId)
+                    .HasColumnName("Delivery_Address_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.ArchivedBy)
                     .HasColumnName("Archived_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.CityId).HasColumnName("City_Id");
+                entity.Property(e => e.ArchivedDate).HasColumnName("Archived_Date");
 
-                entity.Property(e => e.CountryId).HasColumnName("Country_Id");
+                entity.Property(e => e.CityId)
+                    .HasColumnName("City_Id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.CountryId)
+                    .HasColumnName("Country_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasColumnName("Created_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedDate).HasColumnName("Created_Date");
 
                 entity.Property(e => e.ModifiedBy)
                     .HasColumnName("Modified_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModifiedDate).HasColumnName("Modified_Date");
 
                 entity.Property(e => e.StreetAddress)
                     .IsRequired()
                     .HasColumnName("Street_Address")
-                    .HasMaxLength(100);
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Type).HasMaxLength(200);
+                entity.Property(e => e.Type)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.UserId)
                     .IsRequired()
-                    .HasColumnName("User_Id");
+                    .HasColumnName("User_Id")
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.City)
                     .WithMany(p => p.DeliveryAddress)
@@ -243,47 +313,49 @@ namespace WebAPI.Entities
             {
                 entity.ToTable("item");
 
-                entity.Property(e => e.ItemId).HasColumnName("Item_Id");
+                entity.Property(e => e.ItemId)
+                    .HasColumnName("Item_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.ArchivedBy)
                     .HasColumnName("Archived_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.ArchivedDate)
-                .HasColumnName("Archived_Date");
+                entity.Property(e => e.ArchivedDate).HasColumnName("Archived_Date");
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasColumnName("Created_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.CreatedDate)
-                .HasColumnName("Created_Date");
+                entity.Property(e => e.CreatedDate).HasColumnName("Created_Date");
 
                 entity.Property(e => e.Description)
                     .IsRequired()
-                    .HasMaxLength(500);
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.IsActive)
-                .HasColumnName("Is_Active")
-                .HasColumnType("tinyint(1)");
-                //.HasConversion(new BoolToZeroOneConverter<Int16>());
+                    .HasColumnName("Is_Active")
+                    .HasColumnType("tinyint(1)");
 
                 entity.Property(e => e.IsOutOfStock)
-                .HasColumnName("Is_Out_of_Stock")
-                .HasColumnType("tinyint(1)");
-                //.HasConversion(new BoolToZeroOneConverter<Int16>());
+                    .HasColumnName("Is_Out_of_Stock")
+                    .HasColumnType("tinyint(1)");
 
                 entity.Property(e => e.ModifiedBy)
                     .HasColumnName("Modified_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.ModifiedDate)
-                .HasColumnName("Modified_Date");
+                entity.Property(e => e.ModifiedDate).HasColumnName("Modified_Date");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasMaxLength(100);
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<ItemPhoto>(entity =>
@@ -293,28 +365,45 @@ namespace WebAPI.Entities
                 entity.HasIndex(e => e.ItemId)
                     .HasName("dish_dish_photo_fk");
 
-                entity.Property(e => e.ItemPhotoId).HasColumnName("Item_Photo_Id");
+                entity.Property(e => e.ItemPhotoId)
+                    .HasColumnName("Item_Photo_Id")
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ArchivedBy)
                     .HasColumnName("Archived_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ArchivedDate).HasColumnName("Archived_Date");
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasColumnName("Created_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.IsPrimary).HasColumnName("Is_Primary");
+                entity.Property(e => e.CreatedDate).HasColumnName("Created_Date");
 
-                entity.Property(e => e.ItemId).HasColumnName("Item_Id");
+                entity.Property(e => e.IsPrimary)
+                    .HasColumnName("Is_Primary")
+                    .HasColumnType("tinyint(1)");
+
+                entity.Property(e => e.ItemId)
+                    .HasColumnName("Item_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.Location)
                     .IsRequired()
-                    .HasMaxLength(1000);
+                    .HasMaxLength(1000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ModifiedBy)
                     .HasColumnName("Modified_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModifiedDate).HasColumnName("Modified_Date");
 
                 entity.HasOne(d => d.Item)
                     .WithMany(p => p.ItemPhoto)
@@ -379,24 +468,36 @@ namespace WebAPI.Entities
             {
                 entity.ToTable("menu_category");
 
-                entity.Property(e => e.MenuCategoryId).HasColumnName("Menu_Category_Id");
+                entity.Property(e => e.MenuCategoryId)
+                    .HasColumnName("Menu_Category_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.ArchivedBy)
                     .HasColumnName("Archived_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ArchivedDate).HasColumnName("Archived_Date");
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasColumnName("Created_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedDate).HasColumnName("Created_Date");
 
                 entity.Property(e => e.ModifiedBy)
                     .HasColumnName("Modified_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModifiedDate).HasColumnName("Modified_Date");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<MenuCategoryPhoto>(entity =>
@@ -406,26 +507,40 @@ namespace WebAPI.Entities
                 entity.HasIndex(e => e.MenuCategoryId)
                     .HasName("menu_category_menu_category_photo_fk");
 
-                entity.Property(e => e.MenuCategoryPhotoId).HasColumnName("Menu_Category_Photo_Id");
+                entity.Property(e => e.MenuCategoryPhotoId)
+                    .HasColumnName("Menu_Category_Photo_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.ArchivedBy)
                     .HasColumnName("Archived_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ArchivedDate).HasColumnName("Archived_Date");
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasColumnName("Created_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedDate).HasColumnName("Created_Date");
 
                 entity.Property(e => e.Location)
                     .IsRequired()
-                    .HasMaxLength(1000);
+                    .HasMaxLength(1000)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.MenuCategoryId).HasColumnName("Menu_Category_Id");
+                entity.Property(e => e.MenuCategoryId)
+                    .HasColumnName("Menu_Category_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.ModifiedBy)
                     .HasColumnName("Modified_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModifiedDate).HasColumnName("Modified_Date");
 
                 entity.HasOne(d => d.MenuCategory)
                     .WithMany(p => p.MenuCategoryPhoto)
@@ -450,34 +565,59 @@ namespace WebAPI.Entities
                 entity.HasIndex(e => e.StoreId)
                     .HasName("restuarant_menu_item_fk");
 
-                entity.Property(e => e.MenuItemId).HasColumnName("Menu_Item_Id");
+                entity.Property(e => e.MenuItemId)
+                    .HasColumnName("Menu_Item_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.ArchivedBy)
                     .HasColumnName("Archived_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ArchivedDate).HasColumnName("Archived_Date");
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasColumnName("Created_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.IsActive).HasColumnName("Is_Active");
+                entity.Property(e => e.CreatedDate).HasColumnName("Created_Date");
 
-                entity.Property(e => e.IsOutOfStock).HasColumnName("Is_Out_of_Stock");
+                entity.Property(e => e.IsActive)
+                    .HasColumnName("Is_Active")
+                    .HasColumnType("tinyint(1)")
+                    .HasConversion(new BoolToZeroOneConverter<Int16>());
 
-                entity.Property(e => e.ItemId).HasColumnName("Item_Id");
+                entity.Property(e => e.IsOutOfStock)
+                    .HasColumnName("Is_Out_of_Stock")
+                    .HasColumnType("tinyint(1)")
+                    .HasConversion(new BoolToZeroOneConverter<Int16>()); ;
 
-                entity.Property(e => e.MenuCategoryId).HasColumnName("Menu_Category_Id");
+                entity.Property(e => e.ItemId)
+                    .HasColumnName("Item_Id")
+                    .HasColumnType("int(11)");
 
-                entity.Property(e => e.MenuId).HasColumnName("Menu_Id");
+                entity.Property(e => e.MenuCategoryId)
+                    .HasColumnName("Menu_Category_Id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.MenuId)
+                    .HasColumnName("Menu_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.ModifiedBy)
                     .HasColumnName("Modified_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModifiedDate).HasColumnName("Modified_Date");
 
                 entity.Property(e => e.Price).HasColumnType("decimal(10,2)");
 
-                entity.Property(e => e.StoreId).HasColumnName("Store_Id");
+                entity.Property(e => e.StoreId)
+                    .HasColumnName("Store_Id")
+                    .HasColumnType("int(11)");
 
                 entity.HasOne(d => d.Item)
                     .WithMany(p => p.MenuItem)
@@ -511,18 +651,28 @@ namespace WebAPI.Entities
                 entity.HasIndex(e => e.StoreId)
                     .HasName("restuarant_special_offer_fk");
 
-                entity.Property(e => e.OfferId).HasColumnName("Offer_Id");
+                entity.Property(e => e.OfferId)
+                    .HasColumnName("Offer_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.Amount).HasColumnType("decimal(10,2)");
 
                 entity.Property(e => e.ArchivedBy)
                     .HasColumnName("Archived_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ArchivedDate).HasColumnName("Archived_Date");
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasColumnName("Created_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedDate).HasColumnName("Created_Date");
+
+                entity.Property(e => e.EndDatetime).HasColumnName("End_Datetime");
 
                 entity.Property(e => e.MinimumAmount)
                     .HasColumnName("Minimum_Amount")
@@ -530,11 +680,18 @@ namespace WebAPI.Entities
 
                 entity.Property(e => e.ModifiedBy)
                     .HasColumnName("Modified_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModifiedDate).HasColumnName("Modified_Date");
 
                 entity.Property(e => e.Percentage).HasColumnType("decimal(3,2)");
 
-                entity.Property(e => e.StoreId).HasColumnName("Store_Id");
+                entity.Property(e => e.StartDatetime).HasColumnName("Start_Datetime");
+
+                entity.Property(e => e.StoreId)
+                    .HasColumnName("Store_Id")
+                    .HasColumnType("int(11)");
 
                 entity.HasOne(d => d.Store)
                     .WithMany(p => p.Offer)
@@ -550,26 +707,43 @@ namespace WebAPI.Entities
                 entity.HasIndex(e => e.MenuItemId)
                     .HasName("menu_item_special_offer_item_fk");
 
-                entity.Property(e => e.OfferItemId).HasColumnName("Offer_Item_id");
+                entity.Property(e => e.OfferItemId)
+                    .HasColumnName("Offer_Item_id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.Amount).HasColumnType("decimal(10,2)");
 
                 entity.Property(e => e.ArchivedBy)
                     .HasColumnName("Archived_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ArchivedDate).HasColumnName("Archived_Date");
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasColumnName("Created_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.MenuItemId).HasColumnName("Menu_Item_Id");
+                entity.Property(e => e.CreatedDate).HasColumnName("Created_Date");
+
+                entity.Property(e => e.EndDatetime).HasColumnName("End_Datetime");
+
+                entity.Property(e => e.MenuItemId)
+                    .HasColumnName("Menu_Item_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.ModifiedBy)
                     .HasColumnName("Modified_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModifiedDate).HasColumnName("Modified_Date");
 
                 entity.Property(e => e.Percentage).HasColumnType("decimal(3,2)");
+
+                entity.Property(e => e.StartDatetime).HasColumnName("Start_Datetime");
 
                 entity.HasOne(d => d.MenuItem)
                     .WithMany(p => p.OfferItem)
@@ -588,7 +762,9 @@ namespace WebAPI.Entities
                 entity.HasIndex(e => e.OrderId)
                     .HasName("order_order_item_fk");
 
-                entity.Property(e => e.OrderItemId).HasColumnName("Order_Item_Id");
+                entity.Property(e => e.OrderItemId)
+                    .HasColumnName("Order_Item_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.ActualPrice)
                     .HasColumnName("Actual_Price")
@@ -596,24 +772,37 @@ namespace WebAPI.Entities
 
                 entity.Property(e => e.ArchivedBy)
                     .HasColumnName("Archived_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ArchivedDate).HasColumnName("Archived_Date");
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasColumnName("Created_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedDate).HasColumnName("Created_Date");
 
                 entity.Property(e => e.FinalPrice)
                     .HasColumnName("Final_Price")
                     .HasColumnType("decimal(10,2)");
 
-                entity.Property(e => e.Instructions).HasMaxLength(200);
+                entity.Property(e => e.Instructions)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.MenuItemId).HasColumnName("Menu_Item_Id");
+                entity.Property(e => e.MenuItemId)
+                    .HasColumnName("Menu_Item_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.ModifiedBy)
                     .HasColumnName("Modified_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModifiedDate).HasColumnName("Modified_Date");
 
                 entity.Property(e => e.OfferAmount)
                     .HasColumnName("Offer_Amount")
@@ -623,7 +812,9 @@ namespace WebAPI.Entities
                     .HasColumnName("Offer_Percent")
                     .HasColumnType("decimal(3,2)");
 
-                entity.Property(e => e.OrderId).HasColumnName("Order_Id");
+                entity.Property(e => e.OrderId)
+                    .HasColumnName("Order_Id")
+                    .HasColumnType("int(11)");
 
                 entity.HasOne(d => d.MenuItem)
                     .WithMany(p => p.OrderItem)
@@ -640,32 +831,52 @@ namespace WebAPI.Entities
 
             modelBuilder.Entity<OrderRider>(entity =>
             {
-                entity.HasKey(e => new { e.RiderId, e.OrderId })
-                    .HasName("PRIMARY");
+                entity.HasKey(e => new { e.RiderId, e.OrderId });
 
                 entity.ToTable("order_rider");
 
                 entity.HasIndex(e => e.OrderId)
                     .HasName("order_order_rider_fk");
 
-                entity.Property(e => e.RiderId).HasColumnName("Rider_Id");
+                entity.Property(e => e.RiderId)
+                    .HasColumnName("Rider_Id")
+                    .HasColumnType("int(11)");
 
-                entity.Property(e => e.OrderId).HasColumnName("Order_Id");
+                entity.Property(e => e.OrderId)
+                    .HasColumnName("Order_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.ArchivedBy)
                     .HasColumnName("Archived_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Comment).HasMaxLength(1000);
+                entity.Property(e => e.ArchivedDate).HasColumnName("Archived_Date");
+
+                entity.Property(e => e.AssignmentDatetime).HasColumnName("Assignment_Datetime");
+
+                entity.Property(e => e.Comment)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasColumnName("Created_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedDate).HasColumnName("Created_Date");
+
+                entity.Property(e => e.JourneyEndTime).HasColumnName("Journey_End_Time");
+
+                entity.Property(e => e.JourneyStartTime).HasColumnName("Journey_Start_Time");
 
                 entity.Property(e => e.ModifiedBy)
                     .HasColumnName("Modified_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModifiedDate).HasColumnName("Modified_Date");
 
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.OrderRider)
@@ -690,24 +901,39 @@ namespace WebAPI.Entities
                 entity.HasIndex(e => e.StatusId)
                     .HasName("status_order_status_fk");
 
-                entity.Property(e => e.OrderStatusId).HasColumnName("Order_Status_Id");
+                entity.Property(e => e.OrderStatusId)
+                    .HasColumnName("Order_Status_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.ArchivedBy)
                     .HasColumnName("Archived_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ArchivedDate).HasColumnName("Archived_Date");
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasColumnName("Created_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedDate).HasColumnName("Created_Date");
 
                 entity.Property(e => e.ModifiedBy)
                     .HasColumnName("Modified_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.OrderId).HasColumnName("Order_Id");
+                entity.Property(e => e.ModifiedDate).HasColumnName("Modified_Date");
 
-                entity.Property(e => e.StatusId).HasColumnName("Status_Id");
+                entity.Property(e => e.OrderId)
+                    .HasColumnName("Order_Id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.StatusId)
+                    .HasColumnName("Status_Id")
+                    .HasColumnType("int(11)");
 
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.OrderStatus)
@@ -732,13 +958,18 @@ namespace WebAPI.Entities
                 entity.HasIndex(e => e.UserId)
                     .HasName("user_rider_fk");
 
-                entity.Property(e => e.RiderId).HasColumnName("Rider_Id");
+                entity.Property(e => e.RiderId)
+                    .HasColumnName("Rider_Id")
+                    .HasColumnType("int(11)");
 
-                entity.Property(e => e.StoreId).HasColumnName("Store_Id");
+                entity.Property(e => e.StoreId)
+                    .HasColumnName("Store_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.UserId)
                     .IsRequired()
-                    .HasColumnName("User_Id");
+                    .HasColumnName("User_Id")
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Store)
                     .WithMany(p => p.Rider)
@@ -757,11 +988,14 @@ namespace WebAPI.Entities
             {
                 entity.ToTable("status");
 
-                entity.Property(e => e.StatusId).HasColumnName("Status_Id");
+                entity.Property(e => e.StatusId)
+                    .HasColumnName("Status_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.Description)
                     .IsRequired()
-                    .HasMaxLength(20);
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Store>(entity =>
@@ -777,38 +1011,63 @@ namespace WebAPI.Entities
                 entity.HasIndex(e => e.CountryId)
                     .HasName("country_restuarant_fk");
 
-                entity.Property(e => e.StoreId).HasColumnName("Store_Id");
+                entity.Property(e => e.StoreId)
+                    .HasColumnName("Store_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.ArchivedBy)
                     .HasColumnName("Archived_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.BrandId).HasColumnName("Brand_Id");
+                entity.Property(e => e.ArchivedDate).HasColumnName("Archived_Date");
 
-                entity.Property(e => e.CityId).HasColumnName("City_Id");
+                entity.Property(e => e.BrandId)
+                    .HasColumnName("Brand_Id")
+                    .HasColumnType("int(11)");
 
-                entity.Property(e => e.CountryId).HasColumnName("Country_Id");
+                entity.Property(e => e.CityId)
+                    .HasColumnName("City_Id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.CountryId)
+                    .HasColumnName("Country_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasColumnName("Created_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedDate).HasColumnName("Created_Date");
+
+                entity.Property(e => e.DeactivationDate).HasColumnName("Deactivation_Date");
 
                 entity.Property(e => e.GooglePin)
                     .HasColumnName("Google_Pin")
-                    .HasMaxLength(200);
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.IsActive).HasColumnName("Is_Active");
+                entity.Property(e => e.IsActive)
+                    .HasColumnName("Is_Active")
+                    .HasColumnType("tinyint(1)");
 
-                entity.Property(e => e.IsClosed).HasColumnName("Is_Closed");
+                entity.Property(e => e.IsClosed)
+                    .HasColumnName("Is_Closed")
+                    .HasColumnType("tinyint(1)");
 
                 entity.Property(e => e.ModifiedBy)
                     .HasColumnName("Modified_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModifiedDate).HasColumnName("Modified_Date");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasMaxLength(100);
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ServiceDistance)
                     .HasColumnName("Service_Distance")
@@ -817,11 +1076,13 @@ namespace WebAPI.Entities
                 entity.Property(e => e.StreetAddress)
                     .IsRequired()
                     .HasColumnName("Street_Address")
-                    .HasMaxLength(100);
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Uri)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Brand)
                     .WithMany(p => p.Store)
@@ -844,8 +1105,7 @@ namespace WebAPI.Entities
 
             modelBuilder.Entity<StoreOrder>(entity =>
             {
-                entity.HasKey(e => e.OrderId)
-                    .HasName("PRIMARY");
+                entity.HasKey(e => e.OrderId);
 
                 entity.ToTable("store_order");
 
@@ -858,20 +1118,32 @@ namespace WebAPI.Entities
                 entity.HasIndex(e => e.StoreId)
                     .HasName("restuarant_order_fk");
 
-                entity.Property(e => e.OrderId).HasColumnName("Order_Id");
+                entity.Property(e => e.OrderId)
+                    .HasColumnName("Order_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.ArchivedBy)
                     .HasColumnName("Archived_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ArchivedDate).HasColumnName("Archived_Date");
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasColumnName("Created_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.CustomerId).HasColumnName("Customer_Id");
+                entity.Property(e => e.CreatedDate).HasColumnName("Created_Date");
 
-                entity.Property(e => e.DeliveryAddressId).HasColumnName("Delivery_Address_Id");
+                entity.Property(e => e.CustomerId)
+                    .HasColumnName("Customer_Id")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DeliveryAddressId)
+                    .HasColumnName("Delivery_Address_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.DeliveryCharge)
                     .HasColumnName("Delivery_Charge")
@@ -887,21 +1159,32 @@ namespace WebAPI.Entities
 
                 entity.Property(e => e.ModifiedBy)
                     .HasColumnName("Modified_By")
-                    .HasMaxLength(767);
+                    .HasMaxLength(767)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModifiedDate).HasColumnName("Modified_Date");
 
                 entity.Property(e => e.NetPayable)
                     .HasColumnName("Net_Payable")
                     .HasColumnType("decimal(10,2)");
 
-                entity.Property(e => e.PhoneNumber).HasColumnName("Phone_Number");
+                entity.Property(e => e.PhoneNumber)
+                    .HasColumnName("Phone_Number")
+                    .HasColumnType("int(11)");
 
-                entity.Property(e => e.Remarks).HasMaxLength(200);
+                entity.Property(e => e.Remarks)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.StoreId).HasColumnName("Store_Id");
+                entity.Property(e => e.StoreId)
+                    .HasColumnName("Store_Id")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.Tax).HasColumnType("decimal(10,2)");
 
                 entity.Property(e => e.Total).HasColumnType("decimal(10,2)");
+
+                entity.Property(e => e.Type).HasColumnType("tinyint(4)");
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.StoreOrder)
@@ -923,8 +1206,7 @@ namespace WebAPI.Entities
 
             modelBuilder.Entity<StoreUser>(entity =>
             {
-                entity.HasKey(e => new { e.UserId, e.StoreId })
-                    .HasName("PRIMARY");
+                entity.HasKey(e => new { e.UserId, e.StoreId });
 
                 entity.ToTable("store_user");
 
@@ -934,11 +1216,23 @@ namespace WebAPI.Entities
                 entity.HasIndex(e => e.StoreId)
                     .HasName("restuarant_restuarant_user_fk");
 
-                entity.Property(e => e.UserId).HasColumnName("User_Id");
+                entity.Property(e => e.UserId)
+                    .HasColumnName("User_Id")
+                    .IsUnicode(false);
 
-                entity.Property(e => e.StoreId).HasColumnName("Store_Id");
+                entity.Property(e => e.StoreId)
+                    .HasColumnName("Store_Id")
+                    .HasColumnType("int(11)");
 
-                entity.Property(e => e.BrandId).HasColumnName("Brand_Id");
+                entity.Property(e => e.ActivationDatetime).HasColumnName("Activation_Datetime");
+
+                entity.Property(e => e.BrandId)
+                    .HasColumnName("Brand_Id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.DeactivationDatetime).HasColumnName("Deactivation_Datetime");
+
+                entity.Property(e => e.InvitationDatetime).HasColumnName("Invitation_Datetime");
 
                 entity.HasOne(d => d.Brand)
                     .WithMany(p => p.StoreUser)
@@ -963,32 +1257,13 @@ namespace WebAPI.Entities
             {
                 entity.ToTable("user");
 
-                entity.Property(e => e.UserId).HasColumnName("User_Id");
-            });
+                entity.Property(e => e.UserId)
+                    .HasColumnName("User_Id")
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
 
-            modelBuilder.Entity<UserRefreshTokens>(entity =>
-            {
-                entity.HasKey(e => e.UserId)
-                    .HasName("PRIMARY");
-
-                entity.ToTable("user_refresh_tokens");
-
-                entity.Property(e => e.UserId).HasColumnName("User_Id");
-
-                entity.Property(e => e.RefreshToken)
-                    .IsRequired()
-                    .HasColumnName("Refresh_Token")
-                    .HasMaxLength(255);
-
-                //entity.HasOne(d => d.User)
-                //    .WithOne(p => p.UserRefreshTokens)
-                //    .HasForeignKey<UserRefreshTokens>(d => d.UserId)
-                //    .HasConstraintName("FK_UserRefreshTokens_AspNetUsers_UserId");
-            });
-
-            OnModelCreatingPartial(modelBuilder);
+                entity.Property(e => e.Type).HasColumnType("tinyint(4)");
+            });            
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

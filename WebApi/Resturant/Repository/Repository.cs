@@ -71,11 +71,17 @@ namespace WebAPI.Repository
             return await _context.Set<T>().ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> GetByIdAsync(Expression<Func<T, bool>> Expression)
-        {
+        public async Task<IEnumerable<T>> GetByIdAsync(Expression<Func<T, bool>> Expression, string ChildObjects)
+        {          
             try
             {
-                return await _context.Set<T>().Where(Expression).ToListAsync();
+                var result = _context.Set<T>().Where(Expression);
+
+                if (ChildObjects != null)
+                    result.Include(ChildObjects);
+
+                return await result.ToListAsync();
+                
             }
             catch (Exception ex)
             {

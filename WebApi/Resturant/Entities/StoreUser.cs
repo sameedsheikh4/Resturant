@@ -7,6 +7,9 @@ namespace WebAPI.Entities
     {
         public string UserId { get; set; }
         public int StoreId { get; set; }
+        public DateTime? InvitationDatetime { get; set; }
+        public DateTime? ActivationDatetime { get; set; }
+        public DateTime? DeactivationDatetime { get; set; }
         public int BrandId { get; set; }
 
         public virtual Brand Brand { get; set; }

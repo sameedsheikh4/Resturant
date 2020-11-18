@@ -15,38 +15,38 @@ namespace ClientApp.Services.TypedClient
 {
     public class BrandsClient
     {
-        public HttpClient Client { get; }
-        public IHttpClientHelper Helper { get; }
+        private readonly HttpClient Client;
+        private readonly IHttpClientHelper Helper;
 
-        public BrandModel Model;
+        public BrandDTO Model;
         public BrandsClient(HttpClient Client, IHttpClientHelper helper)
         {
             this.Client = Client;
             Helper = helper;
         }
-        public async Task<IEnumerable<BrandModel>> GetBrandsAsync()
+        public async Task<IEnumerable<BrandDTO>> GetBrandsAsync()
         {
             var Response = await Client.GetAsync("api/brands");
-            Response.EnsureSuccessStatusCode();
+
             var ResponseStream = await Response.Content.ReadAsStringAsync();
 
-            return JsonConvert.DeserializeObject<IEnumerable<BrandModel>>(ResponseStream);            
+            return JsonConvert.DeserializeObject<IEnumerable<BrandDTO>>(ResponseStream);            
         }
-        public async Task<IEnumerable<BrandModel>> GetBrandsByIdAsync(int Id)
+        public async Task<IEnumerable<BrandDTO>> GetBrandsByIdAsync(int Id)
         {
             var Response = await Client.GetAsync($"api/brands/{Id}");
             Response.EnsureSuccessStatusCode();
             var ResponseStream = await Response.Content.ReadAsStringAsync();
 
-            return JsonConvert.DeserializeObject<IEnumerable<BrandModel>>(ResponseStream);
+            return JsonConvert.DeserializeObject<IEnumerable<BrandDTO>>(ResponseStream);
         }
-        public async Task<BrandModel> CreateBrandsAsync(BrandModel BrandModel)
+        public async Task<BrandDTO> CreateBrandsAsync(BrandDTO Entity)
         {
 
             //HttpContent BrandModelJson = Helper.CreateHttpContent<BrandModel>(BrandModel);
 
             StringContent BrandModelJson = new StringContent(
-                System.Text.Json.JsonSerializer.Serialize(BrandModel),
+                System.Text.Json.JsonSerializer.Serialize(Entity),
                 Encoding.UTF8,
                 "application/json");
 
@@ -56,16 +56,16 @@ namespace ClientApp.Services.TypedClient
             if (HttpResponse.IsSuccessStatusCode)
             {
                 var responseStream = await HttpResponse.Content.ReadAsStringAsync();
-                Model = JsonConvert.DeserializeObject<BrandModel>(responseStream);
+                Model = JsonConvert.DeserializeObject<BrandDTO>(responseStream);
             }
 
             HttpResponse.EnsureSuccessStatusCode();
 
             return Model;
         }
-        public async Task UpdateBrandAsync(BrandModel BrandModel)
+        public async Task UpdateBrandAsync(BrandDTO Entity)
         {
-            HttpContent BrandModelJson = Helper.CreateHttpContent<BrandModel>(BrandModel);
+            HttpContent BrandModelJson = Helper.CreateHttpContent<BrandDTO>(Entity);
 
             var HttpResponse =
                 await Client.PutAsync("Brands", BrandModelJson);

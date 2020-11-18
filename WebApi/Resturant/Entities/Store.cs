@@ -24,11 +24,15 @@ namespace WebAPI.Entities
         public int CountryId { get; set; }
         public string GooglePin { get; set; }
         public string Uri { get; set; }
-        public bool IsClosed { get; set; }
-        public bool IsActive { get; set; }
+        public byte IsClosed { get; set; }
+        public byte IsActive { get; set; }
+        public DateTime DeactivationDate { get; set; }
         public string ArchivedBy { get; set; }
         public string ModifiedBy { get; set; }
         public string CreatedBy { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public DateTime? ArchivedDate { get; set; }
 
         public virtual Brand Brand { get; set; }
         public virtual City City { get; set; }
