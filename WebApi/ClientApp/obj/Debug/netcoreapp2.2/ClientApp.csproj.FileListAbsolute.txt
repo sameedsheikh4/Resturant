@@ -33,7 +33,6 @@ C:\Users\muham\Desktop\Resturant\WebApi\ClientApp\obj\Debug\netcoreapp2.2\Client
 C:\Users\muham\Desktop\Resturant\WebApi\ClientApp\obj\Debug\netcoreapp2.2\ClientApp.genruntimeconfig.cache
 C:\Users\muham\Desktop\Resturant\WebApi\ClientApp\obj\Debug\netcoreapp2.2\Razor\Views\Brands\Index.cshtml.g.cs
 C:\Users\muham\Desktop\Resturant\WebApi\ClientApp\obj\Debug\netcoreapp2.2\Razor\Views\Brands\Create.cshtml.g.cs
-C:\Users\muham\Desktop\Resturant\WebApi\ClientApp\obj\Debug\netcoreapp2.2\ClientApp.csproj.CoreCompileInputs.cache
 C:\Users\muham\Desktop\Resturant\WebApi\ClientApp\obj\Debug\netcoreapp2.2\Razor\Views\Brands\Delete.cshtml.g.cs
 C:\Users\muham\Desktop\Resturant\WebApi\ClientApp\obj\Debug\netcoreapp2.2\Razor\Views\Items\Index.cshtml.g.cs
 C:\Users\muham\Desktop\Resturant\WebApi\ClientApp\obj\Debug\netcoreapp2.2\Razor\Views\Items\Create.cshtml.g.cs
@@ -44,3 +43,4 @@ C:\Users\muham\Desktop\Resturant\WebApi\ClientApp\obj\Debug\netcoreapp2.2\Razor\
 C:\Users\muham\Desktop\Resturant\WebApi\ClientApp\obj\Debug\netcoreapp2.2\Razor\Views\MenuCategories\Index.cshtml.g.cs
 C:\Users\muham\Desktop\Resturant\WebApi\ClientApp\obj\Debug\netcoreapp2.2\Razor\Views\MenuCategories\Create.cshtml.g.cs
 C:\Users\muham\Desktop\Resturant\WebApi\ClientApp\obj\Debug\netcoreapp2.2\Razor\Views\MenuItems\Create.cshtml.g.cs
+C:\Users\muham\Desktop\Resturant\WebApi\ClientApp\obj\Debug\netcoreapp2.2\ClientApp.csproj.CoreCompileInputs.cache

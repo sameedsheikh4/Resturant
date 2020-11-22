@@ -18,6 +18,9 @@ namespace WebAPI.Handlers
             CreateMap<Menu, MenuDTO>();
             CreateMap<MenuCategory, MenuCategoryDTO>();
             CreateMap<MenuItem, MenuItemDTO>();
+            CreateMap<StoreOrder, StoreOrderDTO>();
+            CreateMap<Status, StatusDTO>();
+            CreateMap<Rider, RiderDTO>();
         }
     }
 }

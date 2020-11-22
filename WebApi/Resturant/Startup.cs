@@ -56,6 +56,7 @@ namespace Resturant
 
             //Register AutoMapper
             services.AddAutoMapper(typeof(Startup));
+
             //Register swagger service
             services.AddSwaggerDocument();
 
@@ -86,6 +87,9 @@ namespace Resturant
 
             services.AddTransient<IMenuItemsRepo, MenuItemsRepo>();
             services.AddTransient<IMenuItemService, MenuItemService>();
+
+            services.AddTransient<IOrdersRepo, OrdersRepo>();
+            services.AddTransient<IOrdersService, OrdersService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

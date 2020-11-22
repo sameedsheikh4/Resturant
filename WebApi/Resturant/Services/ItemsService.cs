@@ -15,10 +15,10 @@ namespace WebAPI.Services
         {
             _repo = repo;
         }
-        public async Task<Item> AddItemAsync(Item Item)
+        public async Task<Item> AddItemAsync(Item Entity)
         {
-            Item.CreatedDate = DateTime.Now;
-            return await _repo.AddAsync(Item);
+            Entity.CreatedDate = DateTime.Now;
+            return await _repo.AddAsync(Entity);
         }
 
         public Task<bool> DeleteItemAsync(int Id)
@@ -26,7 +26,7 @@ namespace WebAPI.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Item>> GetAll()
+        public async Task<IEnumerable<Item>> GetAllAsync()
         {
             return await _repo.GetAllAsync();
         }
@@ -41,9 +41,9 @@ namespace WebAPI.Services
             return await _repo.IsArchive(Id);
         }
 
-        public async Task<Item> UpdateItemAsync(Item Item)
+        public async Task<Item> UpdateItemAsync(Item Entity)
         {
-            return await _repo.UpdateAsync(Item);
+            return await _repo.UpdateAsync(Entity);
         }
     }
 }

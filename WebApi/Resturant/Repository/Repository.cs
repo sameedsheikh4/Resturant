@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading.Tasks;
 using WebAPI.Entities;
 using WebAPI.Interfaces;
@@ -29,7 +30,7 @@ namespace WebAPI.Repository
             }
 
             try
-            {
+            {                
                 await _context.AddAsync(Entity);
                 await _context.SaveChangesAsync();
 

@@ -34,7 +34,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllItems()
         {
-            List = mapper.Map<IEnumerable<ItemDTO>>(await service.GetAll());
+            List = mapper.Map<IEnumerable<ItemDTO>>(await service.GetAllAsync());
             return Ok(List);
         }
         [HttpPost]

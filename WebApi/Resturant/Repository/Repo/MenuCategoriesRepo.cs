@@ -15,6 +15,8 @@ namespace WebAPI.Repository.Repo
 
         public MenuCategoriesRepo(compassContext context, IloggerManager logger) : base(context, logger)
         {
+            _context = context;
+            this.logger = logger;
         }
 
         public async Task<MenuCategory> IsArchive(int Id)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using AutoMapper;
 using ClientApp.Services.TypedClient;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,9 @@ namespace ClientApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Initialize Automapper
+            services.AddAutoMapper(typeof(Startup));
+
             var Url = Configuration["API:Url"];
             services.AddHttpClient<BrandsClient>(option =>
             {
@@ -49,6 +53,11 @@ namespace ClientApp
             });
 
             services.AddHttpClient<MenuItemClient>(option =>
+            {
+                option.BaseAddress = new Uri(Url);
+            });
+
+            services.AddHttpClient<OrdersClient>(option =>
             {
                 option.BaseAddress = new Uri(Url);
             });

@@ -14,7 +14,7 @@ namespace ClientApp.Services.TypedClient
         private readonly HttpClient Client;
         private readonly IHttpClientHelper Helper;
 
-        public ItemDTO Model;
+        private ItemDTO Model;
         public ItemsClient(HttpClient Client, IHttpClientHelper helper)
         {
             this.Client = Client;

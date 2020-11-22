@@ -6,4 +6,3 @@ C:\Users\muham\Desktop\Resturant\WebApi\Common\obj\Debug\netcoreapp2.2\Common.As
 C:\Users\muham\Desktop\Resturant\WebApi\Common\obj\Debug\netcoreapp2.2\Common.csproj.CoreCompileInputs.cache
 C:\Users\muham\Desktop\Resturant\WebApi\Common\obj\Debug\netcoreapp2.2\Common.dll
 C:\Users\muham\Desktop\Resturant\WebApi\Common\obj\Debug\netcoreapp2.2\Common.pdb
-C:\Users\muham\Desktop\Resturant\WebApi\Common\obj\Debug\netcoreapp2.2\Common.csprojAssemblyReference.cache
