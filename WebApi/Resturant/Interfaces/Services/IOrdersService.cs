@@ -8,7 +8,7 @@ namespace WebAPI.Interfaces.Services
 {
     public interface IOrdersService
     {
-        Task<IEnumerable<StoreOrder>> GetOrdersByIdAsync(int Id);
+        Task<IEnumerable<StoreOrder>> GetOrdersByIdAsync(int StoreId);
         Task<IEnumerable<StoreOrder>> GetAllAsync();
         Task<StoreOrder> AddOrderAsync(StoreOrder Entity);
         Task<StoreOrder> UpdateOrderAsync(StoreOrder Entity);

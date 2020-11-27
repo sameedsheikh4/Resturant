@@ -12,6 +12,7 @@ namespace WebAPI.Entities
         }
 
         public int ItemId { get; set; }
+        public int StoreId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public byte IsOutOfStock { get; set; }

@@ -32,10 +32,10 @@ namespace WebAPI.Controllers
             return Ok(OrderList);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetOrdersById(int Id)
+        [HttpGet("{StoreId}")]
+        public async Task<IActionResult> GetOrdersById(int StoreId)
         {
-            OrderList = mapper.Map<IEnumerable<StoreOrderDTO>>(await service.GetOrdersByIdAsync(Id));
+            OrderList = mapper.Map<IEnumerable<StoreOrderDTO>>(await service.GetOrdersByIdAsync(StoreId));
             return Ok(OrderList);
         }
 

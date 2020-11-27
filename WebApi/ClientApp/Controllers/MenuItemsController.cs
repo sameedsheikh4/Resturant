@@ -27,7 +27,7 @@ namespace ClientApp.Controllers
         {
             try
             {
-                List = await _client.GetMenuItemsAsync();
+                List = await _client.GetMenuItemsByIdAsync(1,4);
                 if (List != null)
                     return View(List);
                 return View();
@@ -57,5 +57,7 @@ namespace ClientApp.Controllers
                 return View();
             }
         }
+        
+
     }
 }

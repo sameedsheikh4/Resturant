@@ -356,6 +356,10 @@ namespace WebAPI.Entities
                     .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.Property(e => e.StoreId)
+                    .HasColumnName("Store_Id")
+                    .HasColumnType("int(11)");
             });
 
             modelBuilder.Entity<ItemPhoto>(entity =>
@@ -498,6 +502,10 @@ namespace WebAPI.Entities
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.StoreId)
+                    .HasColumnName("Store_Id")
+                    .HasColumnType("int(11)");
             });
 
             modelBuilder.Entity<MenuCategoryPhoto>(entity =>

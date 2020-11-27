@@ -25,7 +25,7 @@ namespace ClientApp.Controllers
         {
             try
             {
-                List = await _client.GetItemsAsync();
+                List = await _client.GetItemsByIdAsync(1);
                 if (List != null)
                     return View(List);
                 return View();
@@ -40,6 +40,7 @@ namespace ClientApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                Entity.StoreId = 1;
                 Entity.CreatedBy = "sameed";
                 Model = await _client.CreateItemAsync(Entity);
                 return RedirectToAction(nameof(Index));

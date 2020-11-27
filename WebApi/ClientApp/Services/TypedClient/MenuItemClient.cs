@@ -27,9 +27,9 @@ namespace ClientApp.Services.TypedClient
             return await Helper.ResponseParsingListAsync<MenuItemDTO>(HttpResponse);
         }
 
-        public async Task<IEnumerable<MenuItemDTO>> GetMenuItemsByIdAsync(int Id)
+        public async Task<IEnumerable<MenuItemDTO>> GetMenuItemsByIdAsync(int StoreId, int MenuId)
         {
-            var HttpResponse = await Client.GetAsync($"api/MenuItems/{Id}");
+            var HttpResponse = await Client.GetAsync($"api/MenuItems/{StoreId}/{MenuId}");
 
             return await Helper.ResponseParsingListAsync<MenuItemDTO>(HttpResponse);
         }

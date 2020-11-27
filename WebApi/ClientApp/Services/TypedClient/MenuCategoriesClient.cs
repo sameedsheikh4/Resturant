@@ -29,11 +29,11 @@ namespace ClientApp.Services.TypedClient
             return await Helper.ResponseParsingListAsync<MenuCategoryDTO>(HttpResponse);
         }
 
-        public async Task<MenuCategoryDTO> GetMenuCategoriesByIdAsync(int Id)
+        public async Task<IEnumerable<MenuCategoryDTO>> GetMenuCategoriesByIdAsync(int Id)
         {
             var HttpResponse = await Client.GetAsync($"api/MenuCategories/{Id}");
 
-            return await Helper.ResponseParsingAsync<MenuCategoryDTO>(HttpResponse);
+            return await Helper.ResponseParsingListAsync<MenuCategoryDTO>(HttpResponse);
         }
 
         public async Task<MenuCategoryDTO> CreateMenuCategoryAsync(MenuCategoryDTO Entity)

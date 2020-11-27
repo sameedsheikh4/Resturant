@@ -8,7 +8,7 @@ namespace WebAPI.Interfaces.Services
 {
     public interface IMenuCategoryService
     {
-        Task<IEnumerable<MenuCategory>> GetMenuCategoriesByIdAsync(int Id);
+        Task<IEnumerable<MenuCategory>> GetMenuCategoriesByIdAsync(int StoreId);
         Task<IEnumerable<MenuCategory>> GetAll();
         Task<MenuCategory> AddMenuCategoryAsync(MenuCategory Entity);
         Task<MenuCategory> UpdateMenuCategoryAsync(MenuCategory Entity);

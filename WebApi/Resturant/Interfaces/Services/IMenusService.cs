@@ -8,7 +8,7 @@ namespace WebAPI.Interfaces.Services
 {
     public interface IMenusService
     {
-        Task<IEnumerable<Menu>> GetMenusByIdAsync(int Id);
+        Task<IEnumerable<Menu>> GetMenusByIdAsync(int StoreId);
         Task<IEnumerable<Menu>> GetAll();
         Task<Menu> AddMenuAsync(Menu Entity);
         Task<Menu> UpdateMenuAsync(Menu Entity);

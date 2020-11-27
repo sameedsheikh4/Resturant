@@ -21,7 +21,7 @@ namespace ClientApp.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            List = await _client.GetMenuCategoriesAsync();
+            List = await _client.GetMenuCategoriesByIdAsync(1);
             return View(List);
         }
 
@@ -29,6 +29,7 @@ namespace ClientApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                Entity.StoreId = 1;
                 Model = await _client.CreateMenuCategoryAsync(Entity);
                 return RedirectToAction(nameof(Index));
             }
@@ -36,7 +37,7 @@ namespace ClientApp.Controllers
             {
                 return View();
             }
-        }       
+        }
 
     }
 }

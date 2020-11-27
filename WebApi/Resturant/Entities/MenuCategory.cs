@@ -12,6 +12,7 @@ namespace WebAPI.Entities
         }
 
         public int MenuCategoryId { get; set; }
+        public int StoreId { get; set; }
         public string Name { get; set; }
         public string ArchivedBy { get; set; }
         public string ModifiedBy { get; set; }

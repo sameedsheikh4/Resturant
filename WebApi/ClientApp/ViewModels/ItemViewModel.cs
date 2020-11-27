@@ -13,6 +13,7 @@ namespace ClientApp.ViewModels
         //}
 
         public int ItemId { get; set; }
+        public int StoreId { get; set; }
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }

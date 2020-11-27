@@ -26,11 +26,11 @@ namespace WebAPI.Controllers
             mapper = Mapper;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetMenusById(int Id)
+        [HttpGet("{StoreId}")]
+        public async Task<IActionResult> GetMenusById(int StoreId)
         {
             //logger.LogInfo(nameof(GetBrandsById));
-            List = mapper.Map<IEnumerable<MenuDTO>>(await service.GetMenusByIdAsync(Id));
+            List = mapper.Map<IEnumerable<MenuDTO>>(await service.GetMenusByIdAsync(StoreId));
             return Ok(List);
         }
         [HttpGet]

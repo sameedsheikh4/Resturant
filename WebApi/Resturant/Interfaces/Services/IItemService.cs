@@ -8,7 +8,7 @@ namespace WebAPI.Interfaces.Services
 {
     public interface IItemService
     {
-        Task<IEnumerable<Item>> GetItemsByIdAsync(int Id);
+        Task<IEnumerable<Item>> GetItemsByIdAsync(int StoreId);
         Task<IEnumerable<Item>> GetAllAsync();
         Task<Item> AddItemAsync(Item Entity);
         Task<Item> UpdateItemAsync(Item Entity);

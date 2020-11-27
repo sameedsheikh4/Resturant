@@ -31,9 +31,9 @@ namespace WebAPI.Services
             return _repo.GetAllAsync();
         }
 
-        public Task<IEnumerable<StoreOrder>> GetOrdersByIdAsync(int Id)
+        public Task<IEnumerable<StoreOrder>> GetOrdersByIdAsync(int StoreId)
         {
-            return _repo.GetByIdAsync(x => x.OrderId == Id && x.ArchivedDate == null, null);
+            return _repo.GetByIdAsync(x => x.StoreId == StoreId && x.ArchivedDate == null, null);
         }
 
         public Task<StoreOrder> IsArchive(int Id)

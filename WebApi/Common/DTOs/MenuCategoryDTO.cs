@@ -8,6 +8,7 @@ namespace Common.DTOs
     {
 
         public int MenuCategoryId { get; set; }
+        public int StoreId { get; set; }
         [Required]
         public string Name { get; set; }
         public string ArchivedBy { get; set; }

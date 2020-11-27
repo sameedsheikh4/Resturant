@@ -18,7 +18,10 @@ namespace WebAPI.Handlers
             CreateMap<Menu, MenuDTO>();
             CreateMap<MenuCategory, MenuCategoryDTO>();
             CreateMap<MenuItem, MenuItemDTO>();
-            CreateMap<StoreOrder, StoreOrderDTO>();
+            CreateMap<StoreOrder, StoreOrderDTO>()
+                .ForMember(a => a.DeliveryAddress, e => e.MapFrom( a=> new DeliveryAddress()));
+
+            CreateMap<DeliveryAddress, DeliveryAddressDTO>();
             CreateMap<Status, StatusDTO>();
             CreateMap<Rider, RiderDTO>();
         }
