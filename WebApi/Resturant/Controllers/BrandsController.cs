@@ -28,12 +28,12 @@ namespace WebAPI.Controllers
             mapper = Mapper;
             logger = Logger;
         }
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<bool>> DeleteBrand(int Id)
-        {
-            logger.LogInfo(nameof(DeleteBrand));
-            return await _brandService.DeleteBrandAsync(Id);
-        }
+        //[HttpDelete("{id}")]
+        //public async Task<ActionResult<IActionResult>> DeleteBrand(int Id)
+        //{
+        //    logger.LogInfo(nameof(DeleteBrand));
+        //    return await _brandService.DeleteBrandAsync(Id);
+        //}
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBrandsById(int Id)

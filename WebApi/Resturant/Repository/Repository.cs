@@ -30,7 +30,7 @@ namespace WebAPI.Repository
             }
 
             try
-            {                
+            {
                 await _context.AddAsync(Entity);
                 await _context.SaveChangesAsync();
 
@@ -40,6 +40,22 @@ namespace WebAPI.Repository
             {
                 throw new Exception($"{nameof(Entity)} could not be saved: {ex.Message}");
             }
+        }
+
+        public async Task<T> Archive(int Id)
+        {
+            var Entity = await _context.Set<T>().FindAsync(Id);
+
+            if (Entity != null)
+            {
+                Type EntityType = typeof(T);
+                PropertyInfo ArchiveDate = EntityType.GetProperty("ArchivedDate");
+                ArchiveDate.SetValue(Entity, DateTime.Now);
+
+                _context.Update(Entity);
+                await _context.SaveChangesAsync();
+            }
+            return Entity;
         }
 
         public async Task<bool> DeleteAsync(int id)
@@ -73,7 +89,7 @@ namespace WebAPI.Repository
         }
 
         public async Task<IEnumerable<T>> GetByIdAsync(Expression<Func<T, bool>> Expression, string ChildObjects)
-        {          
+        {
             try
             {
                 var result = _context.Set<T>().Where(Expression);
@@ -82,7 +98,7 @@ namespace WebAPI.Repository
                     result.Include(ChildObjects);
 
                 return await result.ToListAsync();
-                
+
             }
             catch (Exception ex)
             {

@@ -38,7 +38,7 @@ namespace WebAPI.Services
 
         public async Task<Item> IsArchive(int Id)
         {
-            return await _repo.IsArchive(Id);
+            return await _repo.Archive(Id);
         }
 
         public async Task<Item> UpdateItemAsync(Item Entity)

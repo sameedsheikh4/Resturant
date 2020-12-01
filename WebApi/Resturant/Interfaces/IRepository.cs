@@ -12,6 +12,6 @@ namespace WebAPI.Interfaces
         Task<IEnumerable<T>> GetAllAsync();    
         Task<T> AddAsync(T Entity);
         Task<T> UpdateAsync(T Entity);
-        Task<bool> DeleteAsync(int Id);
+        Task<T> Archive(int Id);
     }
 }

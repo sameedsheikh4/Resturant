@@ -21,9 +21,9 @@ namespace WebAPI.Services
             return await _brandsRepo.AddAsync(brand);
         }
 
-        public async Task<bool> DeleteBrandAsync(int id)
+        public async Task<Brand> DeleteBrandAsync(int id)
         {
-            return await _brandsRepo.DeleteAsync(id);
+            return await _brandsRepo.Archive(id);
         }
 
         public async Task<IEnumerable<Brand>> GetAll()
