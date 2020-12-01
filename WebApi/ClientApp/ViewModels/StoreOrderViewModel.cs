@@ -3,15 +3,8 @@ using System.Collections.Generic;
 
 namespace ClientApp.ViewModels
 {
-    public partial class StoreOrderViewModel
+    public class StoreOrderViewModel
     {
-        public StoreOrderViewModel()
-        {
-            OrderItem = new HashSet<OrderItemViewModel>();
-            OrderRider = new HashSet<OrderRiderViewModel>();
-            OrderStatus = new HashSet<OrderStatusViewModel>();
-        }
-
         public int OrderId { get; set; }
         public int StoreId { get; set; }
         public byte Type { get; set; }
@@ -33,11 +26,11 @@ namespace ClientApp.ViewModels
         public DateTime CreatedDate { get; set; }
         public string Remarks { get; set; }
 
-        public virtual UserViewModel Customer { get; set; }
-        public virtual DeliveryAddressViewModel DeliveryAddress { get; set; }
-        public virtual StoreViewModel Store { get; set; }
-        public virtual ICollection<OrderItemViewModel> OrderItem { get; set; }
-        public virtual ICollection<OrderRiderViewModel> OrderRider { get; set; }
-        public virtual ICollection<OrderStatusViewModel> OrderStatus { get; set; }
+        public UserViewModel Customer { get; set; }
+        public DeliveryAddressViewModel DeliveryAddress { get; set; }
+        public StoreViewModel Store { get; set; }
+        public List<OrderItemViewModel> OrderItem { get; set; }
+        public List<OrderRiderViewModel> OrderRider { get; set; }
+        public List<OrderStatusViewModel> OrderStatus { get; set; }
     }
 }

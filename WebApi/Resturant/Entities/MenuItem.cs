@@ -26,8 +26,8 @@ namespace WebAPI.Entities
         public DateTime? ModifiedDate { get; set; }
         public DateTime? ArchivedDate { get; set; }
 
-        public virtual Item Item { get; set; }
-        public virtual Menu Menu { get; set; }
+        public Item Item { get; set; }
+        public Menu Menu { get; set; }
         public virtual MenuCategory MenuCategory { get; set; }
         public virtual Store Store { get; set; }
         public virtual ICollection<OfferItem> OfferItem { get; set; }

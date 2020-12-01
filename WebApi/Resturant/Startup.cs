@@ -91,6 +91,9 @@ namespace Resturant
             services.AddTransient<IOrdersRepo, OrdersRepo>();
             services.AddTransient<IOrdersService, OrdersService>();
 
+            services.AddTransient<IRiderOrderRepo, RiderOrderRepo>();
+            services.AddTransient<IRiderOrderService, RiderOrderService>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

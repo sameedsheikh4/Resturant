@@ -6,12 +6,6 @@ namespace ClientApp.ViewModels
 {
     public class ItemViewModel
     {
-        //public ItemDTO()
-        //{
-        //    ItemPhoto = new HashSet<ItemPhotoDTO>();
-        //    MenuItem = new HashSet<MenuItemDTO>();
-        //}
-
         public int ItemId { get; set; }
         public int StoreId { get; set; }
         [Required]
@@ -26,7 +20,7 @@ namespace ClientApp.ViewModels
         public DateTime? ModifiedDate { get; set; }
         public DateTime? ArchivedDate { get; set; }
 
-        public virtual ICollection<ItemPhotoViewModel> ItemPhoto { get; set; }
-        public virtual ICollection<MenuItemViewModel> MenuItem { get; set; }
+        public List<ItemPhotoViewModel> ItemPhoto { get; set; }
+        public List<MenuItemViewModel> MenuItem { get; set; }
     }
 }

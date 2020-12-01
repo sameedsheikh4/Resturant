@@ -32,6 +32,11 @@ namespace WebAPI.Services
             return await _repo.GetAllAsync();
         }
 
+        public async Task<IEnumerable<MenuItem>> GetDetails(int StoreId, int? MenuId)
+        {
+            return await _repo.GetMenuItemAsync(StoreId, MenuId);
+        }
+
         public async Task<IEnumerable<MenuItem>> GetMenuItemsByIdAsync(int StoreId, int MenuId)
         {
             return await _repo.GetByIdAsync(x => x.StoreId == StoreId && x.MenuId == MenuId && x.ArchivedDate == null, null);

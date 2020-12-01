@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ClientApp.ViewModels
 {
-    public partial class MenuViewModel
+    public class MenuViewModel
     {
         public int MenuId { get; set; }
         [Required]

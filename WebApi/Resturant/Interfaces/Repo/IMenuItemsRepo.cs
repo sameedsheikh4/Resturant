@@ -9,5 +9,6 @@ namespace WebAPI.Interfaces.Repo
     public interface IMenuItemsRepo : IRepository<MenuItem>
     {
         Task<MenuItem> IsArchive(int Id);
+        Task<IEnumerable<MenuItem>> GetMenuItemAsync(int storeId, int? MenuId);
     }
 }

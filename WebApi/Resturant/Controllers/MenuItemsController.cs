@@ -58,5 +58,12 @@ namespace WebAPI.Controllers
             Model = mapper.Map<MenuItemDTO>(await service.IsArchive(Id));
             return Ok(Model);
         }
+        [HttpGet("name/{StoreId}/{MenuId?}")]
+        public async Task<IActionResult> GetDetails(int StoreId, int? MenuId)
+        {
+            //return Ok(mapper.Map<MenuItemDTO>(await service.GetDetails(StoreId, MenuId)));
+
+            return Ok(await service.GetDetails(StoreId, MenuId));
+        }
     }
 }

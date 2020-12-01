@@ -3,13 +3,8 @@ using System.Collections.Generic;
 
 namespace ClientApp.ViewModels
 {
-    public partial class DeliveryAddressViewModel
+    public class DeliveryAddressViewModel
     {
-        public DeliveryAddressViewModel()
-        {
-            StoreOrder = new HashSet<StoreOrderViewModel>();
-        }
-
         public int DeliveryAddressId { get; set; }
         public string UserId { get; set; }
         public string Type { get; set; }
@@ -23,9 +18,9 @@ namespace ClientApp.ViewModels
         public string ModifiedBy { get; set; }
         public DateTime CreatedDate { get; set; }
 
-        public virtual CityViewModel City { get; set; }
-        public virtual CountryViewModel Country { get; set; }
-        public virtual UserViewModel User { get; set; }
-        public virtual ICollection<StoreOrderViewModel> StoreOrder { get; set; }
+        public CityViewModel City { get; set; }
+        public CountryViewModel Country { get; set; }
+        public UserViewModel User { get; set; }
+        public List<StoreOrderViewModel> StoreOrder { get; set; }
     }
 }

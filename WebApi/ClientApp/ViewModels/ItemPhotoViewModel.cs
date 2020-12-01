@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ClientApp.ViewModels
 {
-    public partial class ItemPhotoViewModel
+    public class ItemPhotoViewModel
     {
         public int ItemPhotoId { get; set; }
         public int ItemId { get; set; }
@@ -16,6 +16,6 @@ namespace ClientApp.ViewModels
         public DateTime? ModifiedDate { get; set; }
         public DateTime? ArchivedDate { get; set; }
 
-        public virtual ItemViewModel Item { get; set; }
+        public ItemViewModel Item { get; set; }
     }
 }

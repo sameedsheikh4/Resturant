@@ -33,6 +33,6 @@ namespace ClientApp.ViewModels
         public DateTime Deactivation_Date { get; set; }
         public DateTime Created_Date { get; set; }
         public DateTime Modified_Date { get; set; }
-        public DateTime Archived_Date { get; set; }        
+        public DateTime Archived_Date { get; set; }
     }
 }

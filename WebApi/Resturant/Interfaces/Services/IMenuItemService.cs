@@ -14,5 +14,6 @@ namespace WebAPI.Interfaces.Services
         Task<MenuItem> UpdateMenuItemAsync(MenuItem Entity);
         Task<bool> DeleteMenuItemAsync(int Id);
         Task<MenuItem> IsArchive(int Id);
+        Task<IEnumerable<MenuItem>> GetDetails(int StoreId, int? MenuId);       
     }
 }

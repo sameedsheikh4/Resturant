@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ClientApp.ViewModels
 {
-    public partial class StoreUserViewModel
+    public class StoreUserViewModel
     {
         public string UserId { get; set; }
         public int StoreId { get; set; }
@@ -12,8 +12,8 @@ namespace ClientApp.ViewModels
         public DateTime? DeactivationDatetime { get; set; }
         public int BrandId { get; set; }
 
-        public virtual BrandViewModel Brand { get; set; }
-        public virtual StoreViewModel Store { get; set; }
-        public virtual UserViewModel User { get; set; }
+        public BrandViewModel Brand { get; set; }
+        public StoreViewModel Store { get; set; }
+        public UserViewModel User { get; set; }
     }
 }

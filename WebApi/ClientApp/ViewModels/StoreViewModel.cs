@@ -5,16 +5,6 @@ namespace ClientApp.ViewModels
 {
     public partial class StoreViewModel
     {
-        public StoreViewModel()
-        {
-            Menu = new HashSet<MenuViewModel>();
-            MenuItem = new HashSet<MenuItemViewModel>();
-            //Offer = new HashSet<OfferDTO>();
-            Rider = new HashSet<RiderViewModel>();
-            StoreOrder = new HashSet<StoreOrderViewModel>();
-            StoreUser = new HashSet<StoreUserViewModel>();
-        }
-
         public int StoreId { get; set; }
         public int BrandId { get; set; }
         public string Name { get; set; }
@@ -34,14 +24,14 @@ namespace ClientApp.ViewModels
         public DateTime? ModifiedDate { get; set; }
         public DateTime? ArchivedDate { get; set; }
 
-        public virtual BrandViewModel Brand { get; set; }
-        public virtual CityViewModel City { get; set; }
-        public virtual CountryViewModel Country { get; set; }
-        public virtual ICollection<MenuViewModel> Menu { get; set; }
-        public virtual ICollection<MenuItemViewModel> MenuItem { get; set; }
+        public BrandViewModel Brand { get; set; }
+        public CityViewModel City { get; set; }
+        public CountryViewModel Country { get; set; }
+        public List<MenuViewModel> Menu { get; set; }
+        public List<MenuItemViewModel> MenuItem { get; set; }
         //public virtual ICollection<OfferDTO> Offer { get; set; }
-        public virtual ICollection<RiderViewModel> Rider { get; set; }
-        public virtual ICollection<StoreOrderViewModel> StoreOrder { get; set; }
-        public virtual ICollection<StoreUserViewModel> StoreUser { get; set; }
+        public List<RiderViewModel> Rider { get; set; }
+        public List<StoreOrderViewModel> StoreOrder { get; set; }
+        public List<StoreUserViewModel> StoreUser { get; set; }
     }
 }

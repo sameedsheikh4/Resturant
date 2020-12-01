@@ -5,20 +5,12 @@ namespace ClientApp.ViewModels
 {
     public partial class UserViewModel
     {
-        public UserViewModel()
-        {
-            DeliveryAddress = new HashSet<DeliveryAddressViewModel>();
-            Rider = new HashSet<RiderViewModel>();
-            StoreOrder = new HashSet<StoreOrderViewModel>();
-            StoreUser = new HashSet<StoreUserViewModel>();
-        }
-
         public string UserId { get; set; }
         public byte Type { get; set; }
 
-        public virtual ICollection<DeliveryAddressViewModel> DeliveryAddress { get; set; }
-        public virtual ICollection<RiderViewModel> Rider { get; set; }
-        public virtual ICollection<StoreOrderViewModel> StoreOrder { get; set; }
-        public virtual ICollection<StoreUserViewModel> StoreUser { get; set; }
+        public List<DeliveryAddressViewModel> DeliveryAddress { get; set; }
+        public List<RiderViewModel> Rider { get; set; }
+        public List<StoreOrderViewModel> StoreOrder { get; set; }
+        public List<StoreUserViewModel> StoreUser { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ClientApp.ViewModels
 {
-    public partial class OrderRiderViewModel
+    public class OrderRiderViewModel
     {
         public int RiderId { get; set; }
         public int OrderId { get; set; }
@@ -18,7 +18,7 @@ namespace ClientApp.ViewModels
         public string ModifiedBy { get; set; }
         public DateTime CreatedDate { get; set; }
 
-        public virtual StoreOrderViewModel Order { get; set; }
-        public virtual RiderViewModel Rider { get; set; }
+        public StoreOrderViewModel Order { get; set; }
+        public RiderViewModel Rider { get; set; }
     }
 }

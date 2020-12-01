@@ -6,7 +6,6 @@ namespace ClientApp.ViewModels
 {
     public class MenuCategoryViewModel
     {
-
         public int MenuCategoryId { get; set; }
         public int StoreId { get; set; }
         [Required]
@@ -19,6 +18,6 @@ namespace ClientApp.ViewModels
         public DateTime? ArchivedDate { get; set; }
 
 
-        public IEnumerable<MenuCategoryPhotoViewModel> MenuCategoryPhoto { get; set; }
+        public List<MenuCategoryPhotoViewModel> MenuCategoryPhoto { get; set; }
     }
 }

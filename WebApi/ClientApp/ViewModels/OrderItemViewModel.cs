@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ClientApp.ViewModels
 {
-    public partial class OrderItemViewModel
+    public class OrderItemViewModel
     {
         public int OrderItemId { get; set; }
         public int OrderId { get; set; }
@@ -20,7 +20,7 @@ namespace ClientApp.ViewModels
         public decimal FinalPrice { get; set; }
         public string Instructions { get; set; }
 
-        public virtual MenuItemViewModel MenuItem { get; set; }
-        public virtual StoreOrderViewModel Order { get; set; }
+        public MenuItemViewModel MenuItem { get; set; }
+        public StoreOrderViewModel Order { get; set; }
     }
 }

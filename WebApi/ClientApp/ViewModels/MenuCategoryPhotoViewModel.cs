@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ClientApp.ViewModels
 {
-    public partial class MenuCategoryPhotoViewModel
+    public class MenuCategoryPhotoViewModel
     {
         public int MenuCategoryPhotoId { get; set; }
         public int MenuCategoryId { get; set; }

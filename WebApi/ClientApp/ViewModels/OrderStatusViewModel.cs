@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ClientApp.ViewModels
 {
-    public partial class OrderStatusViewModel
+    public class OrderStatusViewModel
     {
         public int OrderStatusId { get; set; }
         public int OrderId { get; set; }
@@ -16,7 +16,7 @@ namespace ClientApp.ViewModels
         public DateTime CreatedDate { get; set; }
         public DateTime Date { get; set; }
 
-        public virtual StoreOrderViewModel Order { get; set; }
-        public virtual StatusViewModel Status { get; set; }
+        public StoreOrderViewModel Order { get; set; }
+        public StatusViewModel Status { get; set; }
     }
 }
